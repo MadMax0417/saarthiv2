@@ -3,7 +3,7 @@
 		title = "Saarthi Studio | Creative Web Design & Digital Branding",
 		description = "Saarthi Studio builds high-performance websites, memorable brand identities, and conversion-focused digital experiences for modern businesses.",
 		url = "https://saarthiv2-six.vercel.app/",
-		image = "/logo.png",
+		image = "/og-image.png",
 		siteName = "Saarthi Studio",
 		type = "website"
 	} = $props();
