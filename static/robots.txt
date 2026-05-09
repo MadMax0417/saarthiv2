@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://aura-agency.vercel.app/sitemap.xml

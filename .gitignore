@@ -1,0 +1,34 @@
+# Dependency directories
+node_modules/
+
+# Build output
+.svelte-kit/
+build/
+dist/
+.vercel
+.netlify
+.cloudflare
+
+# Dotenv environment variables
+.env
+.env.*
+!.env.example
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Test & Logs
+tests/results/
+coverage/
+*.log
+.eslintcache

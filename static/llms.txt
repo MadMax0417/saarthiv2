@@ -1,0 +1,30 @@
+# Saarthi Studio
+
+Saarthi Studio is a creative web design and digital branding studio focused on premium landing pages, brand identity, and conversion-focused websites.
+
+## What this site contains
+
+- Home page with services, showcases, testimonials, FAQ, and contact CTA
+- A contact form that submits through SvelteKit server actions
+- A thank-you page for successful submissions
+
+## Key pages
+
+- https://aura-agency.vercel.app/
+- https://aura-agency.vercel.app/thank-you
+
+## Tech stack
+
+- SvelteKit
+- Svelte 5
+- Tailwind CSS
+- GSAP
+- Lenis
+- MongoDB via Mongoose
+
+## Notes for crawlers
+
+- This site is intended to be indexed
+- Main content is on the homepage
+- Contact submissions are handled server-side
+
