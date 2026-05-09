@@ -1,6 +1,6 @@
 # Saarthi Studio — Creative Agency Template
 
-![Saarthi Studio Preview](./aura-preview.png)
+
 
 A production-ready, high-performance creative agency landing page built with Svelte 5, Tailwind CSS v4, and GSAP. Built for Saarthi Studio, this template features hardware-accelerated motion, complex spatial typography, and a meticulously crafted premium dark-mode aesthetic.
 
