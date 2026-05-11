@@ -1,33 +1,32 @@
 <script>
-  import {enhance} from "$app/forms";
-  import {toast} from 'svelte-sonner';
+  import { enhance } from "$app/forms";
+  import { toast } from "svelte-sonner";
 
   let formEl;
 
   const handleSubmit = () => {
     return async ({ result }) => {
-      if(result.type === 'success') {
-        toast.success(result.data.message)
-        formEl.reset()
+      if (result.type === "success") {
+        toast.success(result.data.message);
+        formEl.reset();
       } else {
-        toast.error(result.data.message)
+        toast.error(result.data.message);
       }
-    } 
-  }
+    };
+  };
 
   const contactDetails = {
-      number : "+91 81693 14760",
-      whatsappNumber : "+91 86389 27841",
-      email:"saarthistudios@gmail.com"
-  }
-  
+    number: "+91 81693 14760",
+    whatsappNumber: "+91 86389 27841",
+    email: "saarthistudios@gmail.com",
+  };
 </script>
 
-<section  
-    id="cta"
+<section
+  id="contact"
   class="w-full bg-[#050505] text-white pt-32 pb-12 relative overflow-hidden border-t border-white/10 border-b-8 border-b-white/5"
 >
-    <div
+  <div
     class="px-6 md:px-24 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mb-32 gap-12"
   >
     <h2
@@ -38,7 +37,7 @@
     </h2>
     <div class="w-full md:w-1/3 flex md:justify-end z-10">
       <a
-      // TO-DO:  add whatsapp link here ----------------------------
+        // TO-DO:  add whatsapp link here ----------------------------
         href="https://wa.me/918638927841?text=Hey%2C%20I%20want%20to%20discuss%20a%20project%20with%20you."
         target="_blank"
         rel="noopener noreferrer"
@@ -66,13 +65,12 @@
           Phone:
           <a href="tel:+918169314760" class="text-white hover:text-[#3B82F6]">
             {contactDetails.number}
-            </a
-            >
-          </p>
-          <p>
-            Phone:
-            <a href="tel:+918638927841" class="text-white hover:text-[#3B82F6]">
-              {contactDetails.whatsappNumber}
+          </a>
+        </p>
+        <p>
+          Phone:
+          <a href="tel:+918638927841" class="text-white hover:text-[#3B82F6]">
+            {contactDetails.whatsappNumber}
           </a>
         </p>
         <p>
@@ -80,10 +78,9 @@
           <a
             href="mailto:saarthistudios@gmail.com"
             class="text-white hover:text-[#3B82F6]"
-            >
-            {contactDetails.email}
-            </a
           >
+            {contactDetails.email}
+          </a>
         </p>
         <p>
           WhatsApp:
@@ -91,14 +88,16 @@
             href="https://wa.me/918638927841?text=Hey%2C%20I%20want%20to%20discuss%20a%20project%20with%20you."
             target="_blank"
             rel="noopener noreferrer"
-            class="text-white hover:text-[#3B82F6]">
+            class="text-white hover:text-[#3B82F6]"
+          >
             {contactDetails.whatsappNumber}
-            </a>
+          </a>
         </p>
       </div>
     </div>
 
     <form
+     
       bind:this={formEl}
       method="POST"
       action="?/submit"
@@ -136,7 +135,7 @@
         required
         class="w-full bg-transparent border border-white/15 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/35 transition-colors resize-none"
       ></textarea>
-      
+
       <button
         type="submit"
         class="px-7 py-3 rounded-full bg-white text-black hover:bg-[#3B82F6] hover:text-white transition-colors text-sm font-medium cursor-pointer"

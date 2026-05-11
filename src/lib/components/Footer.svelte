@@ -14,14 +14,14 @@
         toast.success(result.data.message);
         formEl.reset();
       } else {
-        toast.error(result.data.message);
+      toast.error(result.data.message);
       }
     };
   };
 </script>
 
 <footer
-  id="contact"
+  id="footer"
   class="w-full bg-[#050505] text-white pt-32 pb-12 relative overflow-hidden border-t border-white/10 border-b-8 border-b-white/5"
 >
   <!-- CTA Section -->

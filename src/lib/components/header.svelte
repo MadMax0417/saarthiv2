@@ -181,6 +181,13 @@
           class="hover:text-white transition-colors">About</a
         >
       </li>
+      <li bind:this={navItemsRef[3]}>
+        <a
+          href="#contact"
+          onclick={(e) => scrollTo(e, "#contact")}
+          class="hover:text-white transition-colors">Contact</a
+        >
+      </li>
     </ul>
   </div>
 

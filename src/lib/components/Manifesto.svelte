@@ -45,7 +45,7 @@
 </script>
 
 <section
-	id="manifesto"
+	id="about"
 	class="w-full bg-[#050505] text-white py-32 md:py-48 px-6 md:px-24 flex flex-col items-center justify-center border-t border-white/5 relative"
 >
 	<span
