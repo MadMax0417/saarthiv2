@@ -134,7 +134,7 @@
             From websites and web apps to logos, graphic design, social media, and SEO — we handle everything your brand needs online.
         </p>
 
-        <div bind:this={ctaContainer} class="mt-8 flex gap-4 z-20">
+        <div bind:this={ctaContainer} class="mt-8 flex flex-col md:flex-row gap-4 z-20">
             <a
                 href="#work"
                 class="px-8 py-4 bg-white text-black rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:text-white transition-all duration-500 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.15)] inline-block"
@@ -143,7 +143,7 @@
             </a>
             <a
                 href="#services"
-                class="hidden md:inline-block px-8 py-4 bg-transparent text-white border border-white/20 rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all duration-500 cursor-pointer"
+                class="md:inline-block px-8 py-4 bg-transparent text-white border border-white/20 rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all duration-500 cursor-pointer"
             >
                 Our Services
             </a>

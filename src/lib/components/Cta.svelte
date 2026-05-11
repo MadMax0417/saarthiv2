@@ -2,15 +2,25 @@
   import {enhance} from "$app/forms";
   import {toast} from 'svelte-sonner';
 
+  let formEl;
+
   const handleSubmit = () => {
     return async ({ result }) => {
       if(result.type === 'success') {
         toast.success(result.data.message)
+        formEl.reset()
       } else {
         toast.error(result.data.message)
       }
     } 
   }
+
+  const contactDetails = {
+      number : "+91 81693 14760",
+      whatsappNumber : "+91 86389 27841",
+      email:"saarthistudios@gmail.com"
+  }
+  
 </script>
 
 <section  
@@ -48,35 +58,45 @@
     <div class="rounded-3xl border border-white/10 bg-white/2 p-6 md:p-8">
       <h3 class="text-2xl md:text-3xl font-serif mb-6">Contact Information</h3>
       <div class="space-y-4 text-white/75">
-        <p>Address: Your Office Address, City, Country</p>
+        <!-- <p>Address: Your Office Address, City, Country</p> -->
         <p>
           Phone:
-          <a href="tel:+919999999999" class="text-white hover:text-[#3B82F6]"
-            >+91 99999 99999</a
-          >
+          <a href="tel:+918169314760" class="text-white hover:text-[#3B82F6]">
+            {contactDetails.number}
+            </a
+            >
+          </p>
+          <p>
+            Phone:
+            <a href="tel:+918638927841" class="text-white hover:text-[#3B82F6]">
+              {contactDetails.whatsappNumber}
+          </a>
         </p>
         <p>
           Email:
           <a
-            href="mailto:hello@aurastudio.com"
+            href="mailto:saarthistudios@gmail.com"
             class="text-white hover:text-[#3B82F6]"
-            >hello@aurastudio.com</a
+            >
+            {contactDetails.email}
+            </a
           >
         </p>
         <p>
           WhatsApp:
           <a
-            href="https://wa.me/919999999999"
+            href="https://wa.me/918638927841?text=Hey%2C%20I%20want%20to%20discuss%20a%20project%20with%20you."
             target="_blank"
             rel="noopener noreferrer"
-            class="text-white hover:text-[#3B82F6]"
-            >+91 99999 99999</a
-          >
+            class="text-white hover:text-[#3B82F6]">
+            {contactDetails.whatsappNumber}
+            </a>
         </p>
       </div>
     </div>
 
     <form
+      bind:this={formEl}
       method="POST"
       action="?/submit"
       use:enhance={handleSubmit}

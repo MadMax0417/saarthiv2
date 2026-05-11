@@ -51,7 +51,7 @@
 
 <section
 	id="services"
-	class="w-full bg-[#050505] text-white py-32 md:py-48 border-t border-white/5 relative z-10 overflow-hidden"
+	class="w-full  bg-[#050505] text-white py-32 md:py-48 border-t border-white/5 relative z-10 overflow-hidden"
 >
 	<!-- Huge background glow for volume -->
 	<div
@@ -68,11 +68,11 @@
 
 		<div
 			bind:this={gridRef}
-			class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full"
+			class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full "
 		>
 			{#each services as service, i}
 				<div
-					class="service-grid-card group relative w-full h-[50vh] md:h-[65vh] lg:h-[75vh] rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] hover:bg-[#0A0A0A] transition-colors duration-700 cursor-default"
+					class="service-grid-card group relative w-full h-[50vh] md:h-[65vh] lg:h-[75vh] 2xl:h-[70vh] rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] hover:bg-[#0A0A0A] transition-colors duration-700 cursor-default"
 				>
 					<!-- Sleek gradient base -->
 					<div

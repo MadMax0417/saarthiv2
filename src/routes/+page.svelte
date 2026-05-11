@@ -1,7 +1,7 @@
 <script>
 	import Hero from "$lib/components/Hero.svelte";
 	import Manifesto from "$lib/components/Manifesto.svelte";
-	import Brands from "$lib/components/Brands.svelte";
+	import Brands from "$lib/components/Marquee.svelte";
 	import Showcase from "$lib/components/Showcase.svelte";
 	import WorksList from "$lib/components/WorksList.svelte";
 	import Testimonials from "$lib/components/Testimonials.svelte";

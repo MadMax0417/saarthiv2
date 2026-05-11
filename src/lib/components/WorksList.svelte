@@ -38,10 +38,10 @@
 	class="w-full bg-[#050505] text-white py-32 border-t border-white/10 min-h-screen"
 >
 	<div
-		class="px-6 md:px-24 mb-24 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-6"
+		class="px-6 md:px-24 mb-24 max-w-7xl mx-auto flex flex-col md:flex-row justify-between  gap-6"
 	>
 		<h2 class="text-5xl md:text-8xl font-serif tracking-tight">
-			 <span class="italic text-white/40">Works</span> 
+			 <span class="italic  text-white md:text-white/40 ">Works</span> 
 		</h2>
 		<p
 			class="text-white/50 font-sans max-w-sm text-lg leading-relaxed pb-2"

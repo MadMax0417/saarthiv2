@@ -16,21 +16,29 @@
   });
 
 	const outcomes = [
-		"Faster Launch Timelines",
-		"Higher Conversion Rates",
-		"Premium Brand Perception",
-		"SEO-Ready Foundation",
-		"Scalable Digital Platforms",
-		"Mobile-First Experiences",
-		"Stronger User Engagement",
-		"Faster Launch Timelines",
-		"Higher Conversion Rates",
-		"Premium Brand Perception",
-		"SEO-Ready Foundation",
-		"Scalable Digital Platforms",
-		"Mobile-First Experiences",
-		"Stronger User Engagement", // Duplicated to allow infinite loop
-	];
+    "Faster Launch Timelines",
+    "Higher Conversion Rates",
+    "Premium Brand Perception",
+    "SEO-Ready From Day One",
+    "Scalable Digital Platforms",
+    "Mobile-First Experiences",
+    "Stronger User Engagement",
+    "Pixel-Perfect Design",
+    "Built for Performance",
+    "Brands That Get Noticed",
+    // Duplicated for infinite loop
+    "Faster Launch Timelines",
+    "Higher Conversion Rates",
+    "Premium Brand Perception",
+    "SEO-Ready From Day One",
+    "Scalable Digital Platforms",
+    "Mobile-First Experiences",
+    "Stronger User Engagement",
+    "Pixel-Perfect Design",
+    "Built for Performance",
+    "Brands That Get Noticed",
+];
+
 </script>
 
 <section
@@ -59,7 +67,7 @@
       <div class="flex gap-16 md:gap-32 px-8 md:px-16 items-center">
 				{#each outcomes as outcome}
           <div
-            class="text-2xl md:text-4xl font-serif text-white/30 hover:text-white transition-colors duration-700 cursor-pointer select-none"
+            class="text-2xl md:text-4xl font-serif text-white/80 hover:text-white transition-colors duration-700 cursor-pointer select-none"
           >
 						{outcome}
           </div>

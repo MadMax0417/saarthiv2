@@ -133,6 +133,13 @@
 
     return () => mm.revert();
   });
+
+  const phoneNumber = "918638927841";
+
+  const message = encodeURIComponent(
+    "Hello! I would like to know more about your services.",
+  );
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 </script>
 
 <div
@@ -147,9 +154,7 @@
     class="flex-shrink-0 flex items-center justify-center w-auto cursor-pointer mix-blend-difference"
   >
     <!-- TO-DO : saaethi studio image fix -->
-    <img src="/logo.png" alt="Saarthi Studio Logo" class="w-40 h-15">
-
-
+    <img src="/logo.png" alt="Saarthi Studio Logo" class="w-40 h-15" />
   </a>
 
   <!-- Desktop Nav -->
@@ -185,8 +190,9 @@
     class="flex space-x-1 sm:space-x-3 items-center z-50"
   >
     <a
-      href="#contact"
-      onclick={(e) => scrollTo(e, "#contact")}
+      href={whatsappLink}
+      target="_blank"
+      rel="noopener noreferrer"
       class="hidden md:flex items-center justify-center text-sm font-medium bg-white text-black hover:bg-white/80 transition-colors px-6 py-2 rounded-full"
       >Let's Talk</a
     >
@@ -241,21 +247,24 @@
         >Contact</a
       >
     </li>
-    <li class="overflow-hidden mt-6 pt-8 border-t border-white/10">
+    <li class="overflow-hidden pt-8 border-t border-white/10">
       <a
         bind:this={mobileLinksRef[3]}
-        href="#contact"
-        onclick={(e) => scrollTo(e, "#contact")}
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        // to do add whatsapp link here -> directly
         class="inline-block text-xl font-sans text-white hover:text-white/80 transition-colors will-change-transform"
-        >Let's talk &rarr;</a
-      >
+        >Let's talk &rarr;
+      </a>
     </li>
   </ul>
 
-  <div
-    class="absolute bottom-10 left-10 flex gap-6 text-xs font-mono text-white/40 uppercase tracking-widest relative z-10"
+  <!-- No need for instagram now -->
+  <!-- <div
+    class="absolute bottom-20 left-1/2 flex gap-6 text-xs font-mono text-white/40 uppercase tracking-widest relative z-10"
   >
-    <!-- TODO: Add Instagram Link here -->
+
     <a
       href="https://www.instagram.com/studio_saarthi"
       target="_blank"
@@ -263,7 +272,7 @@
     >
       Instagram
     </a>
-  </div>
+  </div>  -->
 </div>
 
 <style>
