@@ -56,7 +56,7 @@
 
 <Cursor />
 <Header />
-<!-- <WhatsappButton /> -->
+<WhatsappButton />
 <Toaster richColors theme="dark" position="top-right" />
 
 <main class="app-wrapper">

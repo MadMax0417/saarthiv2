@@ -38,7 +38,10 @@
     </h2>
     <div class="w-full md:w-1/3 flex md:justify-end z-10">
       <a
-        href="mailto:hello@aurastudio.com"
+      // TO-DO:  add whatsapp link here ----------------------------
+        href="https://wa.me/918638927841?text=Hey%2C%20I%20want%20to%20discuss%20a%20project%20with%20you."
+        target="_blank"
+        rel="noopener noreferrer"
         class="group relative flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-white text-black hover:scale-105 transition-transform duration-500 cursor-pointer"
       >
         <span
