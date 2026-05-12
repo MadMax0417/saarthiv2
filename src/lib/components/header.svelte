@@ -144,7 +144,7 @@
   const message = encodeURIComponent(
     "Hello! I would like to know more about your services.",
   );
-  const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
 </script>
 
 <div
