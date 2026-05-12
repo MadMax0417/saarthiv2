@@ -2,7 +2,7 @@
 	let {
 		title = "Saarthi Studio | Digital Partner for Modern Brands",
 		description = "Saarthi Studio is a digital partner for modern brands. We help brands grow through websites, design, and digital presence.",
-		url = "https://saarthiv2-six.vercel.app/",
+		url = "https://www.saarthistudio.com/",
 		image = "/og-image.png",
 		siteName = "Saarthi Studio",
 		type = "website"
