@@ -10,8 +10,7 @@ Saarthi Studio is a creative web design and digital branding studio focused on p
 
 ## Key pages
 
-- https://aura-agency.vercel.app/
-- https://aura-agency.vercel.app/thank-you
+- https://www.saarthistudio.com/
 
 ## Tech stack
 
