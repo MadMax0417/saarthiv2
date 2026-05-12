@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://aura-agency.vercel.app/sitemap.xml
+Sitemap: https://www.saarthistudio.com/sitemap.xml

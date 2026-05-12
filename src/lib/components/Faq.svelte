@@ -30,6 +30,21 @@
     },
   ];
 
+
+  //Faq Schema 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
   let activeIndex = $state(null);
 
   function toggle(index) {
@@ -40,6 +55,13 @@
     }
   }
 </script>
+
+//head 
+<svelte:head>
+  <script type="application/ld+json">
+    {JSON.stringify(faqSchema)}
+  </script>
+</svelte:head>
 
 <section
   id="faq"
@@ -87,11 +109,11 @@
           aria-expanded={activeIndex === index}
         >
           <div class="w-full flex justify-between items-center">
-            <span
+            <h3
               class="text-2xl md:text-3xl font-serif text-white/80 group-hover:text-white transition-colors duration-300"
             >
               {item.q}
-            </span>
+          </h3>
 
             <div
               class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center transform transition-transform duration-500 group-hover:bg-white/10"
