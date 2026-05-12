@@ -56,7 +56,7 @@
   }
 </script>
 
-//head 
+
 <svelte:head>
   <script type="application/ld+json">
     {JSON.stringify(faqSchema)}
