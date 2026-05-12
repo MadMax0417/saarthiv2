@@ -53,17 +53,17 @@
         >Home
       </a>
       <a
-        href="#services"
+        href="/#services"
         class="text-white/60 hover:text-white font-sans text-sm transition-colors"
         >Services</a
       >
       <a
-        href="#work"
+        href="/#work"
         class="text-white/60 hover:text-white font-sans text-sm transition-colors"
         >Works</a
       >
       <a
-        href="#faq"
+        href="/#faq"
         class="text-white/60 hover:text-white font-sans text-sm transition-colors"
         >FAQ</a
       >
@@ -178,11 +178,11 @@
 				>
 			</span> -->
       <div class="flex gap-6 text-white/30 hidden md:flex">
-        <a href="#privacy" class="hover:text-white/60 transition-colors"
+        <a href="/privacy-policy" class="hover:text-white/60 transition-colors"
           >Privacy Policy</a
         >
-        <a href="#terms" class="hover:text-white/60 transition-colors"
-          >Terms of Service</a
+        <a href="/terms-and-conditions" class="hover:text-white/60 transition-colors"
+          >Terms &amp; Conditions</a
         >
       </div>
     </div>

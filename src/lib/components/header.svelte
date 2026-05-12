@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { page } from "$app/state";
   import gsap from "gsap";
   import ScrollToPlugin from "gsap/ScrollToPlugin";
   import Logo from "./logo.svelte";
@@ -47,6 +48,10 @@
 
   // Advanced Smooth Scroll Injection
   function scrollTo(evt, id) {
+    if (page.url.pathname !== "/") {
+      return;
+    }
+
     evt.preventDefault();
     if (isMenuOpen) toggleMenu();
     gsap.to(window, {
@@ -148,7 +153,7 @@
 >
   <a
     id="logo"
-    href="#agency"
+    href="/#agency"
     onclick={(e) => scrollTo(e, "#agency")}
     bind:this={logoRef}
     class="flex-shrink-0 flex items-center justify-center w-auto cursor-pointer mix-blend-difference"
@@ -162,28 +167,28 @@
     <ul class="flex space-x-8 text-sm font-medium text-white/70">
       <li bind:this={navItemsRef[0]}>
         <a
-          href="#work"
+          href="/#work"
           onclick={(e) => scrollTo(e, "#work")}
           class="hover:text-white transition-colors">Work</a
         >
       </li>
       <li bind:this={navItemsRef[1]}>
         <a
-          href="#services"
+          href="/#services"
           onclick={(e) => scrollTo(e, "#services")}
           class="hover:text-white transition-colors">Services</a
         >
       </li>
       <li bind:this={navItemsRef[2]}>
         <a
-          href="#about"
+          href="/#about"
           onclick={(e) => scrollTo(e, "#about")}
           class="hover:text-white transition-colors">About</a
         >
       </li>
       <li bind:this={navItemsRef[3]}>
         <a
-          href="#contact"
+          href="/#contact"
           onclick={(e) => scrollTo(e, "#contact")}
           class="hover:text-white transition-colors">Contact</a
         >
@@ -230,7 +235,7 @@
     <li class="overflow-hidden">
       <a
         bind:this={mobileLinksRef[0]}
-        href="#work"
+        href="/#work"
         onclick={(e) => scrollTo(e, "#work")}
         class="block text-4xl font-sans font-light text-white/80 hover:text-white transition-colors will-change-transform"
         >Work</a
@@ -239,7 +244,7 @@
     <li class="overflow-hidden">
       <a
         bind:this={mobileLinksRef[1]}
-        href="#services"
+        href="/#services"
         onclick={(e) => scrollTo(e, "#services")}
         class="block text-4xl font-sans font-light text-white/80 hover:text-white transition-colors will-change-transform"
         >Services</a
@@ -248,7 +253,7 @@
     <li class="overflow-hidden">
       <a
         bind:this={mobileLinksRef[2]}
-        href="#about"
+        href="/#about"
         onclick={(e) => scrollTo(e, "#about")}
         class="block text-4xl font-sans font-light text-white/80 hover:text-white transition-colors will-change-transform"
         >About</a
@@ -257,7 +262,7 @@
     <li class="overflow-hidden">
       <a
         bind:this={mobileLinksRef[3]}
-        href="#contact"
+        href="/#contact"
         onclick={(e) => scrollTo(e, "#contact")}
         class="block text-4xl font-sans font-light text-white/80 hover:text-white transition-colors will-change-transform"
         >Contact</a
