@@ -102,7 +102,7 @@
 
     <h3
       bind:this={quoteRef}
-      class="text-3xl md:text-5xl lg:text-6xl font-serif text-white/90 leading-[1.3] md:leading-[1.2] tracking-tight mb-16 flex items-center justify-center will-change-transform h-[200px] md:h-auto"
+      class="text-3xl md:text-5xl xl:text-6xl font-serif text-white/90 leading-[1.3] md:leading-[1.2] tracking-tight mb-16 flex items-center justify-center will-change-transform h-[200px] md:h-auto"
     >
       "{feedbacks[currentIndex].text}"
     </h3>
