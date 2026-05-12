@@ -16,7 +16,7 @@
       href={`https://wa.me/${phoneNumber}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
-      class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-transform duration-200 hover:scale-110 z-500"
+      class="fixed bottom-10 right-6 md:right-10 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-transform duration-200 hover:scale-110 z-500 cursor-pointer"
     >
 	<!-- whatsapp icon -->
       <svg
