@@ -25,6 +25,8 @@ This project is based on the open-source work of [YusufCeng1z](https://github.co
 
 Ensure you have Node.js (v20+) installed on your machine.
 
+Copy `.env.example` to `.env` and fill in the values before running the app. PostHog needs both `PUBLIC_POSTHOG_PROJECT_TOKEN` and `PUBLIC_POSTHOG_HOST` for client and server tracking.
+
 ```bash
 # Install node packages
 npm install

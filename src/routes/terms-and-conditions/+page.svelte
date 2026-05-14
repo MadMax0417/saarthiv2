@@ -2,7 +2,7 @@
   import Seo from "$lib/components/Seo.svelte";
   import Footer from "$lib/components/Footer.svelte";
 
-  const updatedOn = "May 12, 2026";
+  const updatedOn = "May 14, 2026";
 </script>
 
 <Seo
@@ -60,6 +60,16 @@
           Any project timelines, estimates, or service descriptions shown on the
           site are provided for general information and may change based on the
           scope of work, availability, or client requirements.
+        </p>
+      </article>
+
+      <article class="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-serif mb-4">Analytics and Tracking</h2>
+        <p class="text-white/65 leading-relaxed">
+          We use analytics tools, including PostHog, to measure website traffic,
+          understand visitor behavior, and improve the site and our services.
+          By using the website, you acknowledge that certain usage data may be
+          collected for analytics, troubleshooting, and performance reporting.
         </p>
       </article>
 

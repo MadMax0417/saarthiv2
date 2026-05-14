@@ -2,13 +2,13 @@
   import Seo from "$lib/components/Seo.svelte";
   import Footer from "$lib/components/Footer.svelte";
 
-  const updatedOn = "May 12, 2026";
+  const updatedOn = "May 14, 2026";
 </script>
 
 <Seo
   title="Privacy Policy | Saarthi Studio"
   description="Read how Saarthi Studio collects, uses, and protects information shared through our website and services."
-  url="https://saarthiv2-six.vercel.app/privacy-policy"
+  url="https://www.saarthistudio.com/privacy-policy"
   type="article"
 />
 
@@ -48,6 +48,22 @@
       </article>
 
       <article class="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-serif mb-4">Analytics and Event Tracking</h2>
+        <p class="text-white/65 leading-relaxed">
+          We use PostHog to understand how visitors use the website and to measure
+          performance. PostHog may collect information such as page views, clicks,
+          form interactions, device and browser details, referrer data, and other
+          usage signals. Where enabled, it may also help us review session-level
+          behavior so we can improve the site experience.
+        </p>
+        <p class="text-white/65 leading-relaxed mt-4">
+          We use this information to analyze traffic, troubleshoot issues, improve
+          content, and understand which parts of the site are most helpful to
+          visitors.
+        </p>
+      </article>
+
+      <article class="rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
         <h2 class="text-2xl md:text-3xl font-serif mb-4">How We Use Information</h2>
         <p class="text-white/65 leading-relaxed">
           We use the information we collect to respond to inquiries, deliver
@@ -61,8 +77,9 @@
         <p class="text-white/65 leading-relaxed">
           We do not sell your personal information. We may share data with
           trusted service providers who help us operate the site or provide
-          services on our behalf, and only when necessary for that purpose or
-          when required by law.
+          services on our behalf, including analytics and monitoring providers
+          such as PostHog, and only when necessary for that purpose or when
+          required by law.
         </p>
       </article>
 
@@ -70,8 +87,11 @@
         <h2 class="text-2xl md:text-3xl font-serif mb-4">Cookies and Analytics</h2>
         <p class="text-white/65 leading-relaxed">
           We may use cookies or similar technologies to understand how visitors
-          use the site, remember preferences, and improve performance. You can
-          usually control cookies through your browser settings.
+          use the site, remember preferences, and improve performance. PostHog
+          may set or read cookies or local storage identifiers to help us measure
+          visits and interactions. You can usually control cookies through your
+          browser settings, and you may also use browser or device controls to
+          limit analytics tracking.
         </p>
       </article>
 
@@ -90,6 +110,11 @@
           Depending on where you live, you may have rights to access, correct,
           delete, or limit the use of your personal information. If you would
           like to make a request, contact us through the website.
+        </p>
+        <p class="text-white/65 leading-relaxed mt-4">
+          If you do not want your browser to be included in analytics data, you
+          can adjust your browser settings or contact us directly so we can review
+          any available opt-out options for the services we use.
         </p>
       </article>
 
