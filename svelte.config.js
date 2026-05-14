@@ -10,6 +10,9 @@ const config = {
 		prerender: {
 			handleHttpError: 'warn',
 			handleMissingId: 'warn'
+		},
+		paths: {
+			relative: false
 		}
 	}
 };

@@ -6,6 +6,7 @@
   import Logo from "./logo.svelte";
   import Menu from "@lucide/svelte/icons/menu";
   import X from "@lucide/svelte/icons/x";
+  import posthog from "posthog-js";
 
   let headerRef = $state();
   let navItemsRef = $state([]);
@@ -205,6 +206,7 @@
       href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
+      onclick={() => posthog.capture('header_whatsapp_clicked', { location: 'desktop_nav' })}
       class="hidden md:flex items-center justify-center text-sm font-medium bg-white text-black hover:bg-white/80 transition-colors px-6 py-2 rounded-full"
       >Let's Talk</a
     >
@@ -274,6 +276,7 @@
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
+        onclick={() => posthog.capture('header_whatsapp_clicked', { location: 'mobile_menu' })}
         // to do add whatsapp link here -> directly
         class="inline-block text-xl font-sans text-white hover:text-white/80 transition-colors will-change-transform"
         >Let's talk &rarr;

@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import gsap from "gsap";
+    import posthog from "posthog-js";
 
     let words = $state([]);
     let descRef = $state();
@@ -137,12 +138,14 @@
         <div bind:this={ctaContainer} class="mt-8 flex flex-col md:flex-row gap-4 z-20">
             <a
                 href="#work"
+                onclick={() => posthog.capture('hero_cta_clicked', { label: 'View Selected Works' })}
                 class="px-8 py-4 bg-white text-black rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:text-white transition-all duration-500 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.15)] inline-block"
             >
                 View Selected Works
             </a>
             <a
                 href="#services"
+                onclick={() => posthog.capture('hero_cta_clicked', { label: 'Our Services' })}
                 class="md:inline-block px-8 py-4 bg-transparent text-white border border-white/20 rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all duration-500 cursor-pointer"
             >
                 Our Services

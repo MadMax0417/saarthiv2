@@ -2,6 +2,7 @@ import { fail } from "@sveltejs/kit";
 import { connectDB } from '$lib/server/dbConnect.js';
 import { Contact } from '$lib/server/contact.js';
 import {Email} from "$lib/server/email.js";
+import { getPostHogClient } from '$lib/server/posthog.js';
 
 export const actions = {
 	submit: async ({ request }) => {
@@ -28,6 +29,14 @@ export const actions = {
 				message
 			});
 
+			const posthog = getPostHogClient();
+			posthog.capture({
+				distinctId: email,
+				event: 'contact_form_submitted',
+				properties: { name, has_phone: Boolean(phone) }
+			});
+			await posthog.flush();
+
 			return {
 				success: true,
 				message: "Message sent successfully.",
@@ -36,6 +45,14 @@ export const actions = {
 		} catch (error) {
 
 			console.error(error);
+
+			const posthog = getPostHogClient();
+			posthog.capture({
+				distinctId: 'server',
+				event: 'contact_form_failed',
+				properties: { error: error instanceof Error ? error.message : String(error) }
+			});
+			await posthog.flush();
 
 			return fail(500, {
 				success: false,
@@ -63,6 +80,14 @@ export const actions = {
 			await connectDB();
 
 			await Email.create({email});
+
+			const posthog = getPostHogClient();
+			posthog.capture({
+				distinctId: email,
+				event: 'email_subscribed',
+				properties: {}
+			});
+			await posthog.flush();
 
 			return {
 				success: true,

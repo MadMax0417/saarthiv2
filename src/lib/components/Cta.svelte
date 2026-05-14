@@ -1,6 +1,7 @@
 <script>
   import { enhance } from "$app/forms";
   import { toast } from "svelte-sonner";
+  import posthog from "posthog-js";
 
   let formEl;
 
@@ -8,9 +9,15 @@
     return async ({ result }) => {
       if (result.type === "success") {
         toast.success(result.data.message);
+        posthog.capture('contact_form_submitted', {
+          has_phone: Boolean(result.data?.data?.phone)
+        });
         formEl.reset();
       } else {
         toast.error(result.data.message);
+        posthog.capture('contact_form_failed', {
+          error_message: result.data?.message
+        });
       }
     };
   };
@@ -41,6 +48,7 @@
         href="https://wa.me/918638927841?text=Hey%2C%20I%20want%20to%20discuss%20a%20project%20with%20you."
         target="_blank"
         rel="noopener noreferrer"
+        onclick={() => posthog.capture('whatsapp_cta_clicked', { location: 'contact_section' })}
         class="group relative flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-white text-black hover:scale-105 transition-transform duration-500 cursor-pointer"
       >
         <span

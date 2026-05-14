@@ -2,6 +2,7 @@
   import Plus from "@lucide/svelte/icons/plus";
   import Minus from "@lucide/svelte/icons/minus";
   import { slide } from "svelte/transition";
+  import posthog from "posthog-js";
 
   const faqs = [
     {
@@ -52,6 +53,7 @@
       activeIndex = null;
     } else {
       activeIndex = index;
+      posthog.capture('faq_item_expanded', { question: faqs[index].q, index });
     }
   }
 </script>
@@ -102,7 +104,7 @@
 
     <!-- Right Side: Accordion -->
     <div class="w-full md:w-2/3 flex flex-col">
-      {#each faqs as item, index}
+      {#each faqs as item, index (item.q)}
         <button
           class="w-full border-b border-white/10 py-8 text-left flex flex-col cursor-pointer group"
           onclick={() => toggle(index)}
