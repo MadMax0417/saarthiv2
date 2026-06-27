@@ -53,6 +53,11 @@
         >Home
       </a>
       <a
+        href="/blog"
+        class="text-white/60 hover:text-white font-sans text-sm transition-colors"
+        >Blog</a
+      >
+      <a
         href="/#services"
         class="text-white/60 hover:text-white font-sans text-sm transition-colors"
         >Services</a

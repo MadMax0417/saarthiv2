@@ -189,6 +189,12 @@
       </li>
       <li bind:this={navItemsRef[3]}>
         <a
+          href="/blog"
+          class="hover:text-white transition-colors">Blog</a
+        >
+      </li>
+      <li bind:this={navItemsRef[4]}>
+        <a
           href="/#contact"
           onclick={(e) => scrollTo(e, "#contact")}
           class="hover:text-white transition-colors">Contact</a
@@ -264,6 +270,14 @@
     <li class="overflow-hidden">
       <a
         bind:this={mobileLinksRef[3]}
+        href="/blog"
+        class="block text-4xl font-sans font-light text-white/80 hover:text-white transition-colors will-change-transform"
+        >Blog</a
+      >
+    </li>
+    <li class="overflow-hidden">
+      <a
+        bind:this={mobileLinksRef[4]}
         href="/#contact"
         onclick={(e) => scrollTo(e, "#contact")}
         class="block text-4xl font-sans font-light text-white/80 hover:text-white transition-colors will-change-transform"
@@ -272,7 +286,7 @@
     </li>
     <li class="overflow-hidden pt-8 border-t border-white/10">
       <a
-        bind:this={mobileLinksRef[4]}
+        bind:this={mobileLinksRef[5]}
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
