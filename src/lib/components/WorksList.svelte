@@ -43,7 +43,7 @@
       name: "Costa Blanca Car Rental",
       category: "International Car Rental Business",
       year: "2026",
-      href: "https://www.costablancacarrental.com/",
+      href: "https://costablancarental.vercel.app/",
       description:
         "A full-featured car rental platform serving international customers with real-time booking and multi-language support.",
       technologies: ["Next.js", "TypeScript", "MongoDB", "Vercel"],
@@ -169,16 +169,18 @@
 
   <!-- Modal -->
   {#if selectedWork}
-    <div
-      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-      onclick={closeModal}
-      role="dialog"
-      tabindex="0"
-      aria-modal="true"
-    >
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <button
+        type="button"
+        class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        aria-label="Close modal"
+        onclick={closeModal}
+      ></button>
       <div
-        class="bg-[#0a0a0a] border border-white/10 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-        onclick={(e) => e.stopPropagation()}
+        class="relative z-10 bg-[#0a0a0a] border border-white/10 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        role="dialog"
+        tabindex="0"
+        aria-modal="true"
       >
         <!-- Header -->
         <div
@@ -191,6 +193,7 @@
             <p class="text-white/60">{selectedWork.category}</p>
           </div>
           <button
+            type="button"
             onclick={closeModal}
             class="text-white/50 hover:text-white transition-colors"
             aria-label="Close modal"
