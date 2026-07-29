@@ -36,6 +36,12 @@
 	<meta property="twitter:description" content={description} />
 	<meta property="twitter:image" content={image} />
 
+	<!-- SEO -->
+	<meta
+		name="keywords"
+		content="website development company, web development company, website design company, web design agency, website development services, custom website development, responsive website design, ecommerce website development, landing page development, website redesign, website developer, website designer, web development agency, React development, Next.js development, MERN stack development, SEO-friendly websites, business website development, small business website, portfolio website development, web application development, SaaS development, custom web applications, website development India, web development company India, website design agency India, Saarthi Studio, Sarathi Studio"
+	/>
+
 	<script
 		type="application/ld+json"
 		data-sveltekit-reload
