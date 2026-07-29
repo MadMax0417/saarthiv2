@@ -1,29 +1,38 @@
 # Saarthi Studio
 
-Saarthi Studio is a creative web design and digital branding studio focused on premium landing pages, brand identity, and conversion-focused websites.
+> Saarthi Studio is a creative web design and digital branding studio focused on premium landing pages, brand identity, conversion-focused websites, and thoughtful motion-driven experiences.
 
-## What this site contains
+Important notes:
 
-- Home page with services, showcases, testimonials, FAQ, and contact CTA
-- A contact form that submits through SvelteKit server actions
-- A thank-you page for successful submissions
+- The homepage is the primary entry point and contains the core studio overview, services, showcases, testimonials, FAQ, stats, and contact CTA.
+- The site includes a blog for practical notes on branding, copy, design, and conversion, plus individual case studies for selected projects.
+- The contact form is handled server-side through SvelteKit actions.
+- The `thank-you` page should not be indexed.
 
-## Key pages
+## Key Pages
 
-- https://www.saarthistudio.com/
+- [Home](https://www.saarthistudio.com/): Studio overview and main marketing page
+- [Blog](https://www.saarthistudio.com/blog): Studio journal with articles on strategy, copy, design, and motion
+- [Case Studies](https://www.saarthistudio.com/case-studies/whimsy-walls): Example project detail page pattern
+- [Privacy Policy](https://www.saarthistudio.com/privacy-policy): Privacy and data handling information
+- [Terms & Conditions](https://www.saarthistudio.com/terms-and-conditions): Website and service terms
 
-## Tech stack
+## Blog
 
-- SvelteKit
-- Svelte 5
-- Tailwind CSS
-- GSAP
-- Lenis
-- MongoDB via Mongoose
+- [How to Plan a Brand Website That Converts: A Practical Framework](https://www.saarthistudio.com/blog/how-to-plan-a-brand-website-that-converts): Conversion-first homepage planning, proof placement, CTA strategy, and SEO quick wins
+- [Saying More With Less Copy](https://www.saarthistudio.com/blog/saying-more-with-less-copy): Advice on concise copy, clarity, and editing for premium websites
+- [What Makes a Modern Agency Portfolio Feel Premium](https://www.saarthistudio.com/blog/what-makes-a-modern-agency-portfolio-feel-premium): Notes on pacing, restraint, proof, and visual polish
 
-## Notes for crawlers
+## Examples
 
-- This site is intended to be indexed
-- Main content is on the homepage
-- Contact submissions are handled server-side
+- [Whimsy Walls Case Study](https://www.saarthistudio.com/case-studies/whimsy-walls): Mobile-first artist portfolio focused on immersive artwork presentation
+- [Mahesh Fishland Case Study](https://www.saarthistudio.com/case-studies/mahesh-fishland): Digital catalogue and WhatsApp-first ordering flow for a seafood business
+- [Costa Blanca Car Rental Case Study](https://www.saarthistudio.com/case-studies/costa-blanca): Premium rental website with SEO and performance focus
+- [Gita Flow Case Study](https://www.saarthistudio.com/case-studies/gita-flow): AI-powered Bhagavad Gita experience with a calm interface
+- [Dr. Amol Bhere Ayurveda Case Study](https://www.saarthistudio.com/case-studies/amol-bhere): Digital presence for an Ayurvedic clinic
+- [Iconic Beauty Salon Case Study](https://www.saarthistudio.com/case-studies/iconic-beauty-salon): Beauty and wellness site with WhatsApp booking flow
 
+## Optional
+
+- [Sitemap](https://www.saarthistudio.com/sitemap.xml): Canonical list of indexable URLs
+- [Robots](https://www.saarthistudio.com/robots.txt): Crawling rules for the site
