@@ -6,8 +6,8 @@
 	let statsRef = $state();
 
 	const stats = [
-		{ label: "Projects Delivered", limit: 5, suffix: "+", prefix: "" },
-		{ label: "Happy Clients", limit: 5, suffix: "+", prefix: "" },
+		{ label: "Projects Delivered", limit: 6, suffix: "+", prefix: "" },
+		{ label: "Happy Clients", limit: 6, suffix: "+", prefix: "" },
 		{ label: "Avg. Delivery Time", limit: 4, suffix: " Weeks", prefix: "<" },
 		{ label: "On-Time Delivery", limit: 100, suffix: "%", prefix: "" },
 	];
