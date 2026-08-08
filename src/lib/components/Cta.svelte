@@ -25,7 +25,7 @@
   const contactDetails = {
     number: "+91 81693 14760",
     whatsappNumber: "+91 86389 27841",
-    email: "saarthistudios@gmail.com",
+    email: "hello@saarthistudio.com",
   };
 </script>
 

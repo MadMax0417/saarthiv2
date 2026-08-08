@@ -28,6 +28,11 @@
       role: "Costa Blanca Car Rental Company",
       text: "Saarthi Studio built our website from scratch and did a great job understanding what we wanted. The design feels clean and premium, the website works smoothly on mobile, and they also optimized the SEO. The revisions were also handled quickly.",
     },
+    {
+      name: "Simran Gupta",
+      role: "Iconic professional beauty salon",
+      text: "A big thank you to the Saarthi Team for designing a beautiful and professional website for my salon. Since launching the website, I’ve seen a noticeable increase in clients, and it has made my business much more organized and easier to manage. I highly recommend Saarthi to anyone looking to grow their business online.",
+    },
 
 
   ];

@@ -8,7 +8,7 @@
 <Seo
   title="Terms & Conditions | Saarthi Studio"
   description="Review the terms and conditions for using Saarthi Studio's website, content, and services."
-  url="https://saarthiv2-six.vercel.app/terms-and-conditions"
+  url="https://www.saarthistudio.com/terms-and-conditions"
   type="article"
 />
 
