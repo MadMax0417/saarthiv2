@@ -21,12 +21,6 @@ const contactSchema = new Schema(
 			trim: true,
 			maxlength: 40
 		},
-		ip: {
-			type: String,
-			default: '',
-			trim: true,
-			maxlength: 100
-		},
 		message: {
 			type: String,
 			required: true,

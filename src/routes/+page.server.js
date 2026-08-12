@@ -4,22 +4,13 @@ import { Contact } from '$lib/server/contact.js';
 import {Email} from "$lib/server/email.js";
 import { getPostHogClient } from '$lib/server/posthog.js';
 
-const getClientIp = (event) => {
-	const forwarded = event.request.headers.get('x-forwarded-for');
-	if (forwarded) {
-		return String(forwarded).split(',')[0].trim();
-	}
-	return event.getClientAddress ? event.getClientAddress() : '';
-};
-
 export const actions = {
-	submit: async ({ request, event }) => {
+	submit: async ({ request }) => {
 		const formData = await request.formData();
 		const name = String(formData.get("name") || "").trim();
 		const email = String(formData.get("email") || "").trim();
 		const phone = String(formData.get("phone") || "").trim();
 		const message = String(formData.get("message") || "").trim();
-		const clientIp = getClientIp(event);
 
 		if (!name || !email || !message) {
 			return fail(400, {
@@ -31,32 +22,11 @@ export const actions = {
 		try {
 			await connectDB();
 
-			const rateLimitWindowMs = 60 * 1000;
-			const rateLimitMax = 3;
-			const cutoff = new Date(Date.now() - rateLimitWindowMs);
-			const ipConditions = [{ email }];
-			if (clientIp) ipConditions.push({ ip: clientIp });
-
-			const recentCount = await Contact.countDocuments({
-				$and: [
-					{ createdAt: { $gte: cutoff } },
-					{ $or: ipConditions }
-				]
-			});
-
-			if (recentCount >= rateLimitMax) {
-				return fail(429, {
-					success: false,
-					message: "Too many submissions. Please wait a minute and try again."
-				});
-			}
-
 			await Contact.create({
 				name,
 				email,
 				phone,
-				message,
-				ip: clientIp
+				message
 			});
 
 			const posthog = getPostHogClient();
