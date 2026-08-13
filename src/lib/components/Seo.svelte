@@ -39,7 +39,7 @@
 	<!-- SEO -->
 	<meta
 		name="keywords"
-		content="website development company, web development company, website design company, web design agency, website development services, custom website development, responsive website design, ecommerce website development, landing page development, website redesign, website developer, website designer, web development agency, React development, Next.js development, MERN stack development, SEO-friendly websites, business website development, small business website, portfolio website development, web application development, SaaS development, custom web applications, website development India, web development company India, website design agency India, Saarthi Studio, Sarathi Studio"
+		content="website design company, web development company, website design agency, web design agency, custom website development, responsive website design, ecommerce website development, website redesign, web application development, SEO-friendly websites, website development India, website design India, website developer Mumbai, website developer Kalyan, Saarthi Studio, Sarathi Studio"
 	/>
 
 	<script
