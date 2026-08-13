@@ -5,32 +5,31 @@
   import posthog from "posthog-js";
 
   const faqs = [
-    {
-      q: "What is your typical project timeline?",
-      a: "Most projects go from concept to launch in 2–4 weeks. Larger platforms or complex applications are scoped individually — but we always move with urgency, not excuses.",
-    },
-    {
-      q: "How does pricing work?",
-      a: "Every project is quoted based on scope and complexity. We offer milestone-based pricing for fixed projects and monthly retainers for ongoing work. No hidden fees, no surprises.",
-    },
-    {
-      q: "What services do you offer?",
-      a: "We design and build websites, web apps, logos, brand identities, and graphic assets — alongside SEO and social media to grow your presence after launch.",
-    },
-    {
-      q: "Do I need to be technical to work with you?",
-      a: "Not at all. We handle everything from strategy to deployment. You focus on your business — we handle the rest and keep you updated at every step.",
-    },
-    {
-      q: "Will my website work on mobile?",
-      a: "Every product we build is mobile-first by default — optimized for all screen sizes, fast load times, and smooth performance across every device.",
-    },
-    {
-      q: "Do you offer support after launch?",
-      a: "Yes. We offer post-launch support, maintenance, and growth retainers — so your digital presence keeps improving long after we go live.",
-    },
-  ];
-
+  {
+    q: "How long does a project usually take?",
+    a: "Most websites and branding projects take 2–4 weeks from kickoff to launch. Larger or more complex projects are scoped separately — but we keep the process focused, transparent, and moving.",
+  },
+  {
+    q: "How much does a website or branding project cost?",
+    a: "Pricing depends on the scope, features, and complexity of the project. We provide a clear quote before we start, with no hidden charges or surprise costs.",
+  },
+  {
+    q: "What does Saarthi Studio actually do?",
+    a: "We help businesses build their digital presence — from websites and web apps to logos, brand identity, graphic design, SEO, and social media. Basically, we turn your ideas into something people can actually see, use, and remember.",
+  },
+  {
+    q: "I don't know exactly what I need. Can you help?",
+    a: "Absolutely. You don't need to come to us with a perfect brief. Tell us about your business, your goals, and what you're trying to achieve — we'll help figure out what you actually need.",
+  },
+  {
+    q: "Will my website work well on mobile?",
+    a: "Yes. Every website we build is responsive and designed with mobile users in mind. We optimize for different screen sizes, performance, and a smooth experience across devices.",
+  },
+  {
+    q: "Do you provide support after the website goes live?",
+    a: "Yes. We can help with maintenance, updates, improvements, SEO, and ongoing digital support after launch. If you want us involved long-term, we also offer ongoing support and growth packages.",
+  },
+];
 
   //Faq Schema 
   const faqSchema = {

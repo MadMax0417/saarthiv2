@@ -12,6 +12,9 @@ export const actions = {
 		const phone = String(formData.get("phone") || "").trim();
 		const message = String(formData.get("message") || "").trim();
 
+		//we will add a honeypot here 
+		//TO-DO: add a honeypot 
+
 		if (!name || !email || !message) {
 			return fail(400, {
 				success: false,
