@@ -3,8 +3,17 @@
   import Logo from "./logo.svelte";
   import { enhance } from "$app/forms";
   import { toast } from "svelte-sonner";
+  import posthog from "posthog-js";
+  import {
+    TEL_HREF,
+    CALL_NUMBER_DISPLAY,
+    waLink,
+    CAL_LINK,
+    PROJECT_WA_MESSAGE,
+  } from "$lib/content/contact.js";
   
   const year = new Date().getFullYear();
+  const whatsappLink = waLink(PROJECT_WA_MESSAGE);
 
   let formEl;
 
@@ -22,7 +31,7 @@
 
 <footer
   id="footer"
-  class="w-full bg-[#050505] text-white pt-32 pb-12 relative overflow-hidden border-t border-white/10 border-b-8 border-b-white/5"
+  class="w-full bg-[#050505] text-white pt-32 pb-32 md:pb-12 relative overflow-hidden border-t border-white/10 border-b-8 border-b-white/5"
 >
   <!-- CTA Section -->
 
@@ -39,6 +48,24 @@
         Saarthi Studio is a digital partner for modern brands. We help brands
         grow through websites, design, and digital presence.
       </p>
+      <div class="flex flex-col gap-2 text-sm font-sans">
+        <a
+          href={TEL_HREF}
+          onclick={() => posthog.capture("footer_call_clicked", { location: "footer_brand" })}
+          class="text-white/60 hover:text-white transition-colors"
+        >
+          Call: {CALL_NUMBER_DISPLAY}
+        </a>
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick={() => posthog.capture("footer_whatsapp_clicked", { location: "footer_brand" })}
+          class="text-white/60 hover:text-white transition-colors"
+        >
+          WhatsApp us &rarr;
+        </a>
+      </div>
     </div>
 
     <div class="col-span-1 flex flex-col gap-4">
@@ -138,8 +165,21 @@
         Book a free call
       </h4>
       <p class="text-white/40 font-sans text-sm">
-        Enter your email address here to book a free call.
+        Pick a slot on our calendar and we'll call you — or leave your email
+        and we'll reach out.
       </p>
+      <a
+        href={CAL_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick={() =>
+          posthog.capture("footer_calendar_clicked", {
+            location: "footer_booking",
+          })}
+        class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white text-black hover:bg-[#3B82F6] hover:text-white transition-colors text-sm font-medium cursor-pointer"
+      >
+        Book a callback &rarr;
+      </a>
       <form
         bind:this={formEl}
         method="POST"
@@ -150,11 +190,14 @@
         <input
           type="email"
           name="email"
-          placeholder="Enter your email"
+          inputmode="email"
+          placeholder="Or enter your email"
+          aria-label="Your email"
           class="w-full bg-white/5 border border-white/10 rounded-full px-6 py-3 text-sm text-white focus:outline-none focus:border-white/40 transition-colors"
         />
         <button
           type="submit"
+          aria-label="Submit email"
           class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-black flex items-center justify-center hover:bg-[#3B82F6] hover:text-white transition-colors"
         >
           &rarr;

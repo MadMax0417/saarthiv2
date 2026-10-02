@@ -10,6 +10,7 @@
     import Cursor from "$lib/components/Cursor.svelte";
     import { Toaster } from "svelte-sonner";
     import WhatsappButton from "$lib/components/WhatsappButton.svelte";
+    import StickyCallBar from "$lib/components/StickyCallBar.svelte";
 
     let { children } = $props();
 
@@ -57,6 +58,7 @@
 <Cursor />
 <Header />
 <WhatsappButton />
+<StickyCallBar />
 <Toaster richColors theme="dark" position="top-right" />
 
 <main class="app-wrapper">

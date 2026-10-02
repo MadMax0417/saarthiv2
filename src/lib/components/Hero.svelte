@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import gsap from "gsap";
     import posthog from "posthog-js";
+    import { TEL_HREF, waLink, DEFAULT_WA_MESSAGE } from "$lib/content/contact.js";
 
     let words = $state([]);
     let descRef = $state();
@@ -9,44 +10,43 @@
     let bgRef = $state();
 
     onMount(() => {
+        // Animations are progressive enhancement only: content is fully
+        // visible in CSS, GSAP hides + reveals it as an enhancement. If JS
+        // never runs (or is slow), the hero still renders.
         const tl = gsap.timeline({ delay: 0.2 });
 
-        gsap.set(bgRef, { autoAlpha: 0, scale: 1.05 });
-        gsap.set(words, { yPercent: 120, rotateZ: 2 });
-        gsap.set([descRef, ctaContainer], { y: 20, autoAlpha: 0 });
-
-        tl.to(bgRef, {
-            autoAlpha: 0.6,
-            scale: 1,
+        tl.from(bgRef, {
+            autoAlpha: 0,
+            scale: 1.05,
             duration: 2.5,
             ease: "power2.out",
         })
-            .to(
+            .from(
                 words,
                 {
-                    yPercent: 0,
-                    rotateZ: 0,
+                    yPercent: 120,
+                    rotateZ: 2,
                     duration: 1.4,
                     stagger: 0.1,
                     ease: "expo.out",
                 },
                 "-=1.5",
             )
-            .to(
+            .from(
                 descRef,
                 {
-                    y: 0,
-                    autoAlpha: 1,
+                    y: 20,
+                    autoAlpha: 0,
                     duration: 1.2,
                     ease: "power3.out",
                 },
                 "-=1.0",
             )
-            .to(
+            .from(
                 ctaContainer,
                 {
-                    y: 0,
-                    autoAlpha: 1,
+                    y: 20,
+                    autoAlpha: 0,
                     duration: 1.2,
                     ease: "power3.out",
                 },
@@ -84,10 +84,10 @@
     id="agency"
     class="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden text-center pt-24 pb-12"
 >
-    <!-- Cinematic Backing -->
+    <!-- Cinematic Backing (opacity baked in CSS: animation ends here) -->
     <div
         bind:this={bgRef}
-        class="absolute inset-0 z-0 pointer-events-none will-change-transform"
+        class="absolute inset-0 z-0 pointer-events-none will-change-transform opacity-60"
     >
         <!-- <img
             src="/ascii-art.gif"
@@ -130,25 +130,45 @@
 
         <p
             bind:this={descRef}
-            class="text-lg md:text-2xl text-white/50 max-w-3xl mt-12 md:mt-8 font-sans font-light leading-relaxed mix-blend-difference px-4"
+            class="text-lg md:text-2xl text-white/50 max-w-3xl mt-6 md:mt-8 font-sans font-light leading-relaxed mix-blend-difference px-4"
         >
             From websites and web apps to logos, graphic design, social media, and SEO — we handle everything your brand needs online.
         </p>
 
-        <div bind:this={ctaContainer} class="mt-8 flex flex-col md:flex-row gap-4 z-20">
+        <div
+            bind:this={ctaContainer}
+            class="mt-6 md:mt-8 flex flex-col md:flex-row gap-3 md:gap-4 z-20 w-full max-w-md md:w-auto md:max-w-none"
+        >
             <a
-                href="#work"
-                onclick={() => posthog.capture('hero_cta_clicked', { label: 'View Selected Works' })}
-                class="px-8 py-4 bg-white text-black rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:text-white transition-all duration-500 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.15)] inline-block"
+                href={TEL_HREF}
+                onclick={() => posthog.capture('hero_cta_clicked', { cta: 'call' })}
+                class="px-6 py-3 md:px-8 md:py-4 bg-white text-black rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:text-white transition-all duration-500 cursor-pointer shadow-[0_0_40px_rgba(255,255,255,0.15)] inline-block text-center w-full md:w-auto"
             >
-                View Selected Works
+                Call Us
             </a>
             <a
-                href="#services"
-                onclick={() => posthog.capture('hero_cta_clicked', { label: 'Our Services' })}
-                class="md:inline-block px-8 py-4 bg-transparent text-white border border-white/20 rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all duration-500 cursor-pointer"
+                href={waLink(DEFAULT_WA_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick={() => posthog.capture('hero_cta_clicked', { cta: 'whatsapp' })}
+                class="px-6 py-3 md:px-8 md:py-4 bg-transparent text-white border border-white/20 rounded-full font-sans font-medium hover:bg-[#3B82F6] hover:border-[#3B82F6] transition-all duration-500 cursor-pointer inline-block text-center w-full md:w-auto"
             >
-                Our Services
+                WhatsApp Us
+            </a>
+        </div>
+
+        <div class="mt-4 md:mt-5 flex flex-col items-center gap-2 z-20 px-4">
+            <p
+                class="text-xs md:text-sm text-white/40 font-sans font-light tracking-wide"
+            >
+                Free website audit · Reply within 24 hours · No spam
+            </p>
+            <a
+                href="#work"
+                onclick={() => posthog.capture('hero_cta_clicked', { cta: 'view_works' })}
+                class="text-xs md:text-sm text-white/50 hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white/60"
+            >
+                View Selected Works
             </a>
         </div>
     </div>

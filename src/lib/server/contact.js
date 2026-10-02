@@ -10,20 +10,22 @@ const contactSchema = new Schema(
 		},
 		email: {
 			type: String,
-			required: true,
+			required: false,
+			default: '',
 			trim: true,
 			lowercase: true,
 			maxlength: 180
 		},
 		phone: {
 			type: String,
-			default: '',
+			required: true,
 			trim: true,
 			maxlength: 40
 		},
 		message: {
 			type: String,
-			required: true,
+			required: false,
+			default: '',
 			trim: true,
 			maxlength: 5000
 		}

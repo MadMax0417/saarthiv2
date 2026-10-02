@@ -15,12 +15,32 @@ export const actions = {
 		//we will add a honeypot here 
 		//TO-DO: add a honeypot 
 
-		if (!name || !email || !message) {
+		// Friction reduction: name + phone are required (how leads actually
+		// arrive); email and message are optional.
+		if (!name || !phone) {
 			return fail(400, {
 				success: false,
-				message: "Name, email, and message are required."
+				message: "Name and phone number are required."
 			});
 		}
+
+		const phoneDigits = phone.replace(/\D/g, "");
+		if (phoneDigits.length < 10) {
+			return fail(400, {
+				success: false,
+				message: "Please enter a valid phone number."
+			});
+		}
+
+		if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+			return fail(400, {
+				success: false,
+				message: "Please enter a valid email address."
+			});
+		}
+
+		// PostHog needs a stable distinct id; email is optional now.
+		const distinctId = email || phone || name;
 
 		try {
 			await connectDB();
@@ -34,9 +54,9 @@ export const actions = {
 
 			const posthog = getPostHogClient();
 			posthog.capture({
-				distinctId: email,
+				distinctId,
 				event: 'contact_form_submitted',
-				properties: { name, has_phone: Boolean(phone) }
+				properties: { name, has_phone: Boolean(phone), has_email: Boolean(email) }
 			});
 			await posthog.flush();
 
@@ -51,7 +71,7 @@ export const actions = {
 
 			const posthog = getPostHogClient();
 			posthog.capture({
-				distinctId: 'server',
+				distinctId,
 				event: 'contact_form_failed',
 				properties: { error: error instanceof Error ? error.message : String(error) }
 			});

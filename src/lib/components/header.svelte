@@ -7,6 +7,7 @@
   import Menu from "@lucide/svelte/icons/menu";
   import X from "@lucide/svelte/icons/x";
   import posthog from "posthog-js";
+  import { TEL_HREF, CALL_NUMBER_DISPLAY } from "$lib/content/contact.js";
 
   let headerRef = $state();
   let navItemsRef = $state([]);
@@ -66,41 +67,33 @@
     gsap.registerPlugin(ScrollToPlugin);
     let mm = gsap.matchMedia();
 
+    // Enhancement only: the header is fully visible in CSS. GSAP animates
+    // from a hidden start state (immediateRender), so a slow/failed JS load
+    // never leaves a blank screen.
     mm.add(
       {
         isMobile: "(max-width: 767px)",
         isDesktop: "(min-width: 768px)",
       },
       (context) => {
-        let { isMobile, isDesktop } = context.conditions;
+        let { isDesktop } = context.conditions;
         const tl = gsap.timeline({ delay: 0.2 });
 
-        gsap.set(headerRef, {
-          width: "0px",
-          opacity: 0,
-          overflow: "hidden",
-        });
-
-        gsap.set(logoRef, { autoAlpha: 0, y: 15, scale: 0.95 });
-        gsap.set(iconsRef, { autoAlpha: 0, x: 10 });
-        gsap.set(mobileMenuRef, { clipPath: "inset(0% 100% 0% 0%)" });
-
-        if (isDesktop) {
-          gsap.set(navItemsRef, { autoAlpha: 0, y: 15 });
-        }
-
-        tl.to(headerRef, {
-          width: isMobile ? "calc(100% - 2rem)" : "100%",
-          maxWidth: "896px",
-          opacity: 1,
-          duration: 1.2,
-          ease: "expo.inOut",
-        }).to(
+        tl.fromTo(
+          headerRef,
+          { width: "0px", opacity: 0 },
+          {
+            width: isDesktop ? "100%" : "calc(100% - 2rem)",
+            opacity: 1,
+            duration: 1.2,
+            ease: "expo.inOut",
+          },
+        ).from(
           logoRef,
           {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
+            autoAlpha: 0,
+            y: 15,
+            scale: 0.95,
             duration: 1.2,
             ease: "expo.out",
           },
@@ -108,11 +101,11 @@
         );
 
         if (isDesktop) {
-          tl.to(
+          tl.from(
             navItemsRef,
             {
-              autoAlpha: 1,
-              y: 0,
+              autoAlpha: 0,
+              y: 15,
               duration: 0.6,
               stagger: 0.08,
               ease: "power3.out",
@@ -121,17 +114,19 @@
           );
         }
 
-        tl.to(
+        tl.from(
           iconsRef,
           {
-            autoAlpha: 1,
-            x: 0,
+            autoAlpha: 0,
+            x: 10,
             duration: 0.5,
             stagger: 0.1,
             ease: "power2.out",
           },
           "-=0.5",
         );
+
+        gsap.set(mobileMenuRef, { clipPath: "inset(0% 100% 0% 0%)" });
 
         return () => tl.kill();
       },
@@ -150,7 +145,7 @@
 
 <div
   bind:this={headerRef}
-  class="header opacity-0 w-0 z-60 fixed top-4 left-1/2 -translate-x-1/2 bg-[#0A0A0A]/60 border border-white/10 h-[60px] pl-6 pr-2 whitespace-nowrap flex justify-between items-center backdrop-blur-xl py-10"
+  class="header opacity-100 w-[calc(100%-2rem)] md:w-full max-w-[896px] z-60 fixed top-4 left-1/2 -translate-x-1/2 bg-[#0A0A0A]/60 border border-white/10 h-[60px] pl-6 pr-2 whitespace-nowrap flex justify-between items-center backdrop-blur-xl py-10 overflow-hidden"
 >
   <a
     id="logo"
@@ -208,6 +203,12 @@
     bind:this={iconsRef}
     class="flex space-x-1 sm:space-x-3 items-center z-50"
   >
+    <a
+      href={TEL_HREF}
+      onclick={() => posthog.capture('header_call_clicked', { location: 'desktop_nav' })}
+      class="hidden lg:flex items-center justify-center text-sm font-medium text-white/80 hover:text-white border border-white/15 hover:border-white/40 transition-colors px-4 py-2 rounded-full whitespace-nowrap"
+      >{CALL_NUMBER_DISPLAY}</a
+    >
     <a
       href={whatsappLink}
       target="_blank"
@@ -284,16 +285,23 @@
         >Contact</a
       >
     </li>
-    <li class="overflow-hidden pt-8 border-t border-white/10">
+    <li class="overflow-hidden pt-8 border-t border-white/10 flex flex-col gap-6">
       <a
         bind:this={mobileLinksRef[5]}
+        href={TEL_HREF}
+        onclick={() => posthog.capture('header_call_clicked', { location: 'mobile_menu' })}
+        class="inline-block text-xl font-sans text-white hover:text-white/80 transition-colors will-change-transform"
+        >Call us &rarr;
+        <span class="block text-sm text-white/50 mt-1">{CALL_NUMBER_DISPLAY}</span>
+      </a>
+      <a
+        bind:this={mobileLinksRef[6]}
         href={whatsappLink}
         target="_blank"
         rel="noopener noreferrer"
         onclick={() => posthog.capture('header_whatsapp_clicked', { location: 'mobile_menu' })}
-        // to do add whatsapp link here -> directly
         class="inline-block text-xl font-sans text-white hover:text-white/80 transition-colors will-change-transform"
-        >Let's talk &rarr;
+        >WhatsApp us &rarr;
       </a>
     </li>
   </ul>
