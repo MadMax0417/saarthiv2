@@ -6,6 +6,7 @@
 	import WorksList from "$lib/components/WorksList.svelte";
 	import Testimonials from "$lib/components/Testimonials.svelte";
 	import Stats from "$lib/components/Stats.svelte";
+	import CtaStrip from "$lib/components/CtaStrip.svelte";
 	import Faq from "$lib/components/Faq.svelte";
 	import Footer from "$lib/components/Footer.svelte";
 	import Seo from "$lib/components/Seo.svelte";
@@ -27,6 +28,7 @@
 	<WorksList />
 	<Testimonials />
 	<Stats />
+	<CtaStrip />
 	<Faq />
 	<section class="px-6 md:px-24 py-24 md:py-32 bg-[#050505]">
 		<div class="max-w-7xl mx-auto">

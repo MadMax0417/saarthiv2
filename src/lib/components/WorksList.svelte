@@ -1,4 +1,6 @@
 <script>
+  import posthog from "posthog-js";
+
   let selectedWork = $state(null);
 
   const works = [
@@ -87,6 +89,14 @@
   function closeModal() {
     selectedWork = null;
   }
+
+  function openWork(work) {
+    selectedWork = work;
+    posthog.capture("work_item_opened", {
+      work: work.name,
+      touch: window.matchMedia("(hover: none)").matches,
+    });
+  }
 </script>
 
 <section
@@ -100,8 +110,8 @@
       <span class="italic text-white md:text-white/40">Works</span>
     </h2>
     <p class="text-white/50 font-sans max-w-sm text-lg leading-relaxed pb-2">
-      A curation of highly immersive projects pushing digital boundaries. Hover
-      to reveal more.
+      A curation of highly immersive projects pushing digital boundaries. Tap
+      or click a project to open details.
     </p>
   </div>
 
@@ -119,12 +129,12 @@
     <!-- Table Rows -->
     {#each works as work}
       <button
-        onclick={() => (selectedWork = work)}
-        class="group flex items-center border-b border-white/10 py-8 md:py-12 px-4 hover:bg-white/5 transition-colors duration-500 cursor-pointer relative overflow-hidden w-full text-left bg-transparent"
+        onclick={() => openWork(work)}
+        class="group flex items-center border-b border-white/10 py-8 md:py-12 px-4 hover:bg-white/5 active:bg-white/10 transition-colors duration-500 cursor-pointer relative overflow-hidden w-full text-left bg-transparent focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 focus-visible:ring-inset"
         style="border: none;"
       >
         <div
-          class="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/0 via-[#3B82F6]/5 to-[#3B82F6]/0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 pointer-events-none"
+          class="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/0 via-[#3B82F6]/5 to-[#3B82F6]/0 transform translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 pointer-events-none"
         ></div>
 
         <div
@@ -149,6 +159,25 @@
         >
           {work.year}
         </div>
+        <!-- Tap affordance (mobile / touch) -->
+        <span
+          class="ml-3 md:ml-4 flex items-center justify-center w-9 h-9 rounded-full border border-white/15 text-white/50 group-hover:border-white/40 group-hover:text-white group-hover:bg-white/10 transition-colors duration-500 z-10"
+          aria-hidden="true"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </span>
       </button>
     {/each}
 

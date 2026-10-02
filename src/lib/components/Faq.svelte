@@ -4,15 +4,18 @@
   import { slide } from "svelte/transition";
   import posthog from "posthog-js";
   import { jsonLd } from "$lib/seo.js";
+  import { waLink } from "$lib/content/contact.js";
 
   const faqs = [
   {
     q: "How long does a project usually take?",
     a: "Most websites and branding projects take 2–4 weeks from kickoff to launch. Larger or more complex projects are scoped separately — but we keep the process focused, transparent, and moving.",
+    cta: true,
   },
   {
     q: "How much does a website or branding project cost?",
     a: "Pricing depends on the scope, features, and complexity of the project. We provide a clear quote before we start, with no hidden charges or surprise costs.",
+    cta: true,
   },
   {
     q: "What does Saarthi Studio actually do?",
@@ -21,6 +24,7 @@
   {
     q: "I don't know exactly what I need. Can you help?",
     a: "Absolutely. You don't need to come to us with a perfect brief. Tell us about your business, your goals, and what you're trying to achieve — we'll help figure out what you actually need.",
+    cta: true,
   },
   {
     q: "Will my website work well on mobile?",
@@ -29,6 +33,7 @@
   {
     q: "Do you provide support after the website goes live?",
     a: "Yes. We can help with maintenance, updates, improvements, SEO, and ongoing digital support after launch. If you want us involved long-term, we also offer ongoing support and growth packages.",
+    cta: true,
   },
 ];
 
@@ -47,6 +52,10 @@
   };
 
   let activeIndex = $state(null);
+
+  const FAQ_CTA_HREF = waLink(
+    "Hi Saarthi Studio, I have a quick question before getting started.",
+  );
 
   function toggle(index) {
     if (activeIndex === index) {
@@ -103,32 +112,36 @@
     <!-- Right Side: Accordion -->
     <div class="w-full md:w-2/3 flex flex-col">
       {#each faqs as item, index (item.q)}
-        <button
-          class="w-full border-b border-white/10 py-8 text-left flex flex-col cursor-pointer group"
-          onclick={() => toggle(index)}
-          aria-expanded={activeIndex === index}
-          aria-label={item.q}
-        >
-          <div class="w-full flex justify-between items-center">
-            <h3
-              class="text-2xl md:text-3xl font-serif text-white/80 group-hover:text-white transition-colors duration-300"
-            >
-              {item.q}
-          </h3>
+        <div class="border-b border-white/10 py-8">
+          <button
+            class="w-full text-left flex flex-col cursor-pointer group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30"
+            onclick={() => toggle(index)}
+            aria-expanded={activeIndex === index}
+            aria-controls="faq-panel-{index}"
+            aria-label={item.q}
+          >
+            <div class="w-full flex justify-between items-center gap-6">
+              <h3
+                class="text-2xl md:text-3xl font-serif text-white/80 group-hover:text-white transition-colors duration-300"
+              >
+                {item.q}
+            </h3>
 
-            <div
-              class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center transform transition-transform duration-500 group-hover:bg-white/10"
-            >
-              {#if activeIndex === index}
-                <Minus class="w-5 h-5 text-white" />
-              {:else}
-                <Plus class="w-5 h-5 text-white" />
-              {/if}
+              <div
+                class="shrink-0 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center transform transition-transform duration-500 group-hover:bg-white/10"
+              >
+                {#if activeIndex === index}
+                  <Minus class="w-5 h-5 text-white" />
+                {:else}
+                  <Plus class="w-5 h-5 text-white" />
+                {/if}
+              </div>
             </div>
-          </div>
+          </button>
 
           {#if activeIndex === index}
             <div
+              id="faq-panel-{index}"
               transition:slide={{
                 duration: 400,
                 easing: (t) => --t * t * t + 1,
@@ -140,10 +153,25 @@
               >
                 {item.a}
               </p>
+
+              {#if item.cta}
+                <a
+                  href={FAQ_CTA_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onclick={() =>
+                    posthog.capture("faq_cta_clicked", {
+                      question: item.q,
+                    })}
+                  class="inline-flex items-center gap-2 mt-5 px-4 py-2 rounded-full border border-white/20 text-xs font-mono uppercase tracking-[0.15em] text-white/80 hover:bg-white hover:text-black hover:border-white transition-colors duration-500 cursor-pointer"
+                >
+                  Still unsure? WhatsApp us
+                  <span aria-hidden="true">↗</span>
+                </a>
+              {/if}
             </div>
           {/if}
-          
-        </button>
+        </div>
       {/each}
     </div>
   </div>

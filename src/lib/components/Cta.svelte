@@ -137,6 +137,7 @@
   <div
     class="px-6 md:px-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
   >
+    <div class="flex flex-col gap-8">
     <div class="rounded-3xl border border-white/10 bg-white/2 p-6 md:p-8">
       <h3 class="text-2xl md:text-3xl font-serif mb-6">Contact Information</h3>
       <div class="space-y-4 text-white/75">
@@ -178,6 +179,46 @@
       >
         Prefer to talk? Call us
       </a>
+    </div>
+
+    <!-- Social proof beside the ask -->
+    <figure class="rounded-3xl border border-white/10 bg-white/2 p-6 md:p-8">
+      <blockquote
+        class="text-lg md:text-xl font-serif text-white/85 leading-relaxed"
+      >
+        "A big thank you to the Saarthi Team for designing a beautiful and
+        professional website for my salon. Since launching the website, I've
+        seen a noticeable increase in clients."
+      </blockquote>
+      <figcaption class="mt-5 flex items-center gap-3">
+        <span
+          class="w-9 h-9 rounded-full bg-[#3B82F6]/15 border border-[#3B82F6]/40 flex items-center justify-center text-xs font-mono text-[#3B82F6]"
+          >SG</span
+        >
+        <span class="flex flex-col">
+          <span class="text-sm text-white font-medium uppercase tracking-widest"
+            >Simran Gupta</span
+          >
+          <span class="text-xs text-white/40"
+            >Iconic professional beauty salon</span
+          >
+        </span>
+      </figcaption>
+    </figure>
+
+    <div
+      class="rounded-3xl border border-white/10 bg-white/2 p-6 md:p-8 flex items-center gap-6"
+    >
+      <div class="flex items-baseline gap-1">
+        <span class="text-4xl md:text-5xl font-serif text-white/30">100</span>
+        <span class="text-3xl md:text-4xl font-serif text-white/60">%</span>
+      </div>
+      <p
+        class="text-xs font-mono text-white/40 uppercase tracking-widest leading-relaxed"
+      >
+        On-Time<br />Delivery
+      </p>
+    </div>
     </div>
 
     <form

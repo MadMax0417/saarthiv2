@@ -2,6 +2,8 @@
 	import { onMount } from "svelte";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
+	import posthog from "posthog-js";
+	import { waLink } from "$lib/content/contact.js";
 
 	const services = [
 		{
@@ -23,6 +25,12 @@
 			icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
 		},
 	];
+
+	function quoteLink(service) {
+		return waLink(
+			`I'm interested in "${service.title}" — could you share a quote?`,
+		);
+	}
 
 	let gridRef = $state();
 
@@ -112,7 +120,7 @@
 
 					<!-- Bottom Content Area -->
 					<div
-						class="absolute bottom-10 left-8 right-8 z-20 flex flex-col gap-6 transform-gpu transition-all duration-700 group-hover:-translate-y-4"
+						class="absolute bottom-10 left-8 right-8 z-20 flex flex-col gap-4 md:gap-6 transform-gpu transition-all duration-700 group-hover:-translate-y-4"
 					>
 						<h3
 							class="text-3xl lg:text-4xl xl:text-5xl font-serif text-white leading-tight tracking-tight"
@@ -136,6 +144,21 @@
 						>
 							{service.desc}
 						</p>
+
+						<!-- Per-service CTA: context-aware WhatsApp prefill -->
+						<a
+							href={quoteLink(service)}
+							target="_blank"
+							rel="noopener noreferrer"
+							onclick={() =>
+								posthog.capture("service_card_whatsapp", {
+									service: service.title,
+								})}
+							class="w-fit inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 text-white/85 text-xs font-mono uppercase tracking-[0.15em] hover:bg-white hover:text-black hover:border-white transition-colors duration-500 cursor-pointer md:opacity-0 md:group-hover:opacity-100"
+						>
+							Get a quote
+							<span aria-hidden="true">↗</span>
+						</a>
 					</div>
 				</div>
 			{/each}
