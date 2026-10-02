@@ -5,6 +5,7 @@
   import posthog from "posthog-js";
   import { jsonLd } from "$lib/seo.js";
   import { waLink } from "$lib/content/contact.js";
+  import { prefersReducedMotion } from "$lib/motion.js";
 
   const faqs = [
   {
@@ -143,7 +144,7 @@
             <div
               id="faq-panel-{index}"
               transition:slide={{
-                duration: 400,
+                duration: prefersReducedMotion() ? 0 : 400,
                 easing: (t) => --t * t * t + 1,
               }}
               class="overflow-hidden"

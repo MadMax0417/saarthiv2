@@ -2,9 +2,10 @@
 	import { onMount } from "svelte";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
+	import { prefersReducedMotion } from "$lib/motion.js";
 
 	const paragraph =
-		"The internet is crowded. Attention is fleeting. And great brands are never an accident. We design websites, web apps, logos, graphics, and social media with a single obsession — craft. Because when engineering meets artistry, brands don't just show up online. They leave a mark.";
+		"The internet is crowded. Attention is fleeting. And great brands are never an accident. We design websites, web apps, logos, graphics and more with a single obsession — craft. Because when engineering meets artistry, brands don't just show up online. They leave a mark.";
 	const words = paragraph.split(" ");
 	const markStartIndex = words.findIndex((word) => word === "They");
 
@@ -15,6 +16,13 @@
 
 		const accentSpans = manifestoRef.querySelectorAll(".word-accent");
 		const regularSpans = manifestoRef.querySelectorAll(".word-regular");
+
+		// Reduced motion: show the final colors immediately (no scroll-scrub).
+		if (prefersReducedMotion()) {
+			gsap.set(regularSpans, { color: "rgba(255,255,255,1)" });
+			gsap.set(accentSpans, { color: "#3B82F6" });
+			return;
+		}
 
 		// Reveal the regular words one by one as you scroll.
 		gsap.to(regularSpans, {
@@ -46,7 +54,7 @@
 
 <section
 	id="about"
-	class="w-full bg-[#050505] text-white py-32 md:py-48 px-6 md:px-24 flex flex-col items-center justify-center border-t border-white/5 relative"
+	class="w-full bg-[#050505] text-white py-30 md:py-42 border-white/5 px-6 md:px-24 flex flex-col items-center justify-center border-t  relative"
 >
 	<span
 		class="text-xs font-mono text-white/30 uppercase tracking-widest mb-16 text-center"

@@ -3,6 +3,7 @@
     import gsap from "gsap";
     import posthog from "posthog-js";
     import { TEL_HREF, waLink, DEFAULT_WA_MESSAGE } from "$lib/content/contact.js";
+    import { prefersReducedMotion } from "$lib/motion.js";
 
     let words = $state([]);
     let descRef = $state();
@@ -12,7 +13,10 @@
     onMount(() => {
         // Animations are progressive enhancement only: content is fully
         // visible in CSS, GSAP hides + reveals it as an enhancement. If JS
-        // never runs (or is slow), the hero still renders.
+        // never runs (or is slow), the hero still renders. Users with
+        // "prefers-reduced-motion" skip the intro and parallax entirely.
+        if (prefersReducedMotion()) return;
+
         const tl = gsap.timeline({ delay: 0.2 });
 
         tl.from(bgRef, {
@@ -82,7 +86,7 @@
 
 <section
     id="agency"
-    class="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden text-center pt-24 pb-12"
+    class="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden text-center pt-24 md:pt-48 pb-12"
 >
     <!-- Cinematic Backing (opacity baked in CSS: animation ends here) -->
     <div
@@ -130,9 +134,9 @@
 
         <p
             bind:this={descRef}
-            class="text-lg md:text-2xl text-white/50 max-w-3xl mt-6 md:mt-8 font-sans font-light leading-relaxed mix-blend-difference px-4"
+            class="text-lg md:text-xl text-white/50 max-w-3xl mt-6 md:mt-8 font-sans font-light leading-relaxed mix-blend-difference px-4"
         >
-            From websites and web apps to logos, graphic design, social media, and SEO — we handle everything your brand needs online.
+            From websites and web apps to logos, graphic design, and SEO — we handle everything your brand needs online.
         </p>
 
         <div

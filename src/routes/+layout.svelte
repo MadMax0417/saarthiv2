@@ -11,11 +11,18 @@
     import { Toaster } from "svelte-sonner";
     import WhatsappButton from "$lib/components/WhatsappButton.svelte";
     import StickyCallBar from "$lib/components/StickyCallBar.svelte";
+    import { prefersReducedMotion } from "$lib/motion.js";
 
     let { children } = $props();
 
     onMount(() => {
         gsap.registerPlugin(ScrollTrigger);
+
+        // Reduced motion: no Lenis smooth scrolling — use the browser's
+        // native (instant) scrolling and let ScrollTrigger follow it.
+        if (prefersReducedMotion()) {
+            return undefined;
+        }
 
         // Lenis'i başlat (Smooth Scrolling)
         const lenis = new Lenis({

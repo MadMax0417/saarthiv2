@@ -2,6 +2,8 @@
   import posthog from "posthog-js";
 
   let selectedWork = $state(null);
+  let dialogRef = $state();
+  let lastTrigger = null;
 
   const works = [
     {
@@ -88,16 +90,36 @@
 
   function closeModal() {
     selectedWork = null;
+    // Return keyboard focus to the row that opened the modal.
+    lastTrigger?.focus?.();
+    lastTrigger = null;
   }
 
   function openWork(work) {
+    lastTrigger = document.activeElement;
     selectedWork = work;
     posthog.capture("work_item_opened", {
       work: work.name,
       touch: window.matchMedia("(hover: none)").matches,
     });
   }
+
+  // Keyboard support: Escape closes the modal.
+  function handleKeydown(e) {
+    if (e.key === "Escape" && selectedWork) {
+      closeModal();
+    }
+  }
+
+  // On open, move keyboard focus into the dialog.
+  $effect(() => {
+    if (selectedWork && dialogRef) {
+      dialogRef.focus();
+    }
+  });
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <section
   id="work"
@@ -206,7 +228,8 @@
         onclick={closeModal}
       ></button>
       <div
-        class="relative z-10 bg-[#0a0a0a] border border-white/10 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        bind:this={dialogRef}
+        class="relative z-10 bg-[#0a0a0a] border border-white/10 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto focus:outline-none focus-visible:ring-1 focus-visible:ring-white/30"
         role="dialog"
         tabindex="0"
         aria-modal="true"
@@ -224,7 +247,7 @@
           <button
             type="button"
             onclick={closeModal}
-            class="text-white/50 hover:text-white transition-colors"
+            class="text-white/50 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/30 rounded-full p-1"
             aria-label="Close modal"
           >
             <svg

@@ -8,6 +8,7 @@
   import X from "@lucide/svelte/icons/x";
   import posthog from "posthog-js";
   import { TEL_HREF, CALL_NUMBER_DISPLAY } from "$lib/content/contact.js";
+  import { prefersReducedMotion } from "$lib/motion.js";
 
   let headerRef = $state();
   let navItemsRef = $state([]);
@@ -19,6 +20,16 @@
 
   function toggleMenu() {
     isMenuOpen = !isMenuOpen;
+    // Reduced motion: jump straight to the open/closed state, no tweening.
+    if (prefersReducedMotion()) {
+      gsap.set(mobileMenuRef, {
+        autoAlpha: isMenuOpen ? 1 : 0,
+        clipPath: isMenuOpen
+          ? "inset(0% 0% 0% 0%)"
+          : "inset(0% 100% 0% 0%)",
+      });
+      return;
+    }
     if (isMenuOpen) {
       const tl = gsap.timeline();
       tl.to(mobileMenuRef, {
@@ -56,6 +67,11 @@
 
     evt.preventDefault();
     if (isMenuOpen) toggleMenu();
+    // Reduced motion: no smooth scrolling, jump directly to the section.
+    if (prefersReducedMotion()) {
+      document.querySelector(id)?.scrollIntoView({ block: "start" });
+      return;
+    }
     gsap.to(window, {
       duration: 1.5,
       scrollTo: { y: id, offsetY: 40 },
@@ -66,6 +82,13 @@
   onMount(() => {
     gsap.registerPlugin(ScrollToPlugin);
     let mm = gsap.matchMedia();
+
+    // Reduced motion: the header is fully visible in CSS, so no intro
+    // timeline runs. The mobile menu's clip-path reset is still needed.
+    if (prefersReducedMotion()) {
+      gsap.set(mobileMenuRef, { clipPath: "inset(0% 100% 0% 0%)" });
+      return;
+    }
 
     // Enhancement only: the header is fully visible in CSS. GSAP animates
     // from a hidden start state (immediateRender), so a slow/failed JS load
@@ -201,14 +224,8 @@
   <!-- Right Controls -->
   <div
     bind:this={iconsRef}
-    class="flex space-x-1 sm:space-x-3 items-center z-50"
+    class="flex space-x-1 items-center z-50"
   >
-    <a
-      href={TEL_HREF}
-      onclick={() => posthog.capture('header_call_clicked', { location: 'desktop_nav' })}
-      class="hidden lg:flex items-center justify-center text-sm font-medium text-white/80 hover:text-white border border-white/15 hover:border-white/40 transition-colors px-4 py-2 rounded-full whitespace-nowrap"
-      >{CALL_NUMBER_DISPLAY}</a
-    >
     <a
       href={whatsappLink}
       target="_blank"

@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import gsap from "gsap";
+  import { prefersReducedMotion } from "$lib/motion.js";
 
   const feedbacks = [
     {
@@ -42,6 +43,7 @@
   let nameRef = $state();
   let isAnimating = false;
   let timer;
+  let reducedMotion = false;
 
   function nextQuote() {
     if (isAnimating) return;
@@ -50,6 +52,14 @@
 
   function goToQuote(index) {
     if (index === currentIndex || isAnimating) return;
+
+    // Reduced motion: swap the quote instantly, no fade tween.
+    if (reducedMotion) {
+      if (timer) clearInterval(timer);
+      currentIndex = index;
+      timer = setInterval(nextQuote, 6000);
+      return;
+    }
 
     isAnimating = true;
     if (timer) clearInterval(timer);
@@ -81,6 +91,7 @@
   }
 
   onMount(() => {
+    reducedMotion = prefersReducedMotion();
     timer = setInterval(nextQuote, 6000);
     return () => {
       if (timer) clearInterval(timer);

@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
+	import { prefersReducedMotion } from "$lib/motion.js";
 
 	let statsRef = $state();
 
@@ -20,6 +21,12 @@
 		counts.forEach((counter, i) => {
 			let target = stats[i].limit;
 			let obj = { val: 0 };
+
+			// Reduced motion: render the final number immediately.
+			if (prefersReducedMotion()) {
+				counter.innerText = target;
+				return;
+			}
 
 			gsap.to(obj, {
 				val: target,

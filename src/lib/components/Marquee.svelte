@@ -1,10 +1,14 @@
 <script>
   import { onMount } from "svelte";
   import gsap from "gsap";
+  import { prefersReducedMotion } from "$lib/motion.js";
 
   let rowRef = $state();
 
   onMount(() => {
+    // Reduced motion: keep the strip static instead of an endless scroll.
+    if (prefersReducedMotion()) return;
+
     // Continuous smooth linear scroll for modern aesthetic
     // To make it seamless, we translate exactly half of the duplicated content width
     gsap.to(rowRef, {

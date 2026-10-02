@@ -56,3 +56,19 @@ button, input, textarea {
     width: 100%;
     min-height: 100vh;
 }
+
+/* --- REDUCED MOTION (accessibility) --- */
+/* CSS transitions/animations are enhancement only; under the OS
+   "reduced motion" setting they are turned off globally. GSAP-driven
+   intro/parallax animations are skipped per-component via
+   $lib/motion.js. Content is never gated by motion. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

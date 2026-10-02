@@ -4,6 +4,7 @@
 	import ScrollTrigger from "gsap/ScrollTrigger";
 	import posthog from "posthog-js";
 	import { waLink } from "$lib/content/contact.js";
+	import { prefersReducedMotion } from "$lib/motion.js";
 
 	const services = [
 		{
@@ -36,6 +37,9 @@
 
 	onMount(() => {
 		gsap.registerPlugin(ScrollTrigger);
+
+		// Reduced motion: cards are visible in CSS; skip the reveal.
+		if (prefersReducedMotion()) return;
 
 		const cards = gridRef.querySelectorAll(".service-grid-card");
 
@@ -92,12 +96,12 @@
 						class="absolute -top-32 -left-32 w-96 h-96 bg-[#3B82F6] opacity-[0.03] group-hover:opacity-[0.12] blur-[100px] rounded-full transition-opacity duration-700 pointer-events-none z-0"
 					></div>
 
-					<!-- Huge background number mark -->
+					<!-- Huge background number mark-->
 					<div
-						class="absolute top-8 left-8 z-20 font-serif text-6xl text-white/5 group-hover:text-white/10 transition-colors duration-700"
+						class="absolute top-8 left-8 z-20 font-serif text-6xl text-white/5 group-hover:text-white/10 transition-colors duration-700 lg:hidden"
 					>
 						0{i + 1}
-					</div>
+					</div> 
 
 					<!-- Icon -->
 					<div

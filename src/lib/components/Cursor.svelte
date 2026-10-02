@@ -7,8 +7,10 @@
 	let isActive = $state(false);
 
 	onMount(() => {
+		// Touch devices: never render the custom cursor. Tested via hover/
+		// pointer capability (covers tablets and touch laptops correctly).
 		isTouchDevice =
-			"ontouchstart" in window || navigator.maxTouchPoints > 0;
+			window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
 		if (isTouchDevice) return;
 
