@@ -2,6 +2,8 @@ export const caseStudies = [
     {
         slug: "whimsy-walls",
         title: "Whimsy Walls Case Study",
+        description:
+          "How Saarthi Studio designed a mobile-first artist portfolio for Whimsy Walls — immersive artwork presentation, fast loading, and a simple inquiry flow for potential clients.",
         projectName: "Whimsy Walls",
         projectId: "01",
         date: "2025",
@@ -44,6 +46,8 @@ Building Whimsy Walls reinforced that great portfolio websites don't need comple
     {
   slug: "mahesh-fishland",
   title: "Mahesh Fishland Case Study",
+  description:
+    "How Saarthi Studio built a centralized online product catalogue with daily price updates and one-tap WhatsApp ordering for a local seafood business.",
   projectName: "Mahesh Fishland",
   projectId: "02",
   date: "2025",
@@ -90,6 +94,8 @@ Not every business needs a full e-commerce platform. By understanding the client
 {
   slug: "costa-blanca",
   title: "Costa Blanca Car Rental Case Study",
+  description:
+    "How Saarthi Studio built a premium car rental website for Costa Blanca — dedicated vehicle pages, a streamlined booking enquiry flow, a 100/100 Lighthouse SEO score, and fast performance.",
   projectName: "Costa Blanca Car Rental",
   projectId: "03",
   date: "2026",
@@ -131,6 +137,8 @@ A rental website should do more than display vehicles—it should build confiden
     {
   slug: "gita-flow",
   title: "Gita Flow Case Study",
+  description:
+    "How Saarthi Studio designed Gita Flow, an AI-powered Bhagavad Gita web platform with a calm, mobile-first interface, smooth transitions, and SEO-friendly architecture.",
   projectName: "Gita Flow",
   projectId: "04",
   date: "2026",
@@ -172,6 +180,8 @@ Designing for a spiritual product requires restraint. Rather than relying on fla
 {
   slug: "amol-bhere",
   title: "Dr. Amol Bhere Ayurveda Case Study",
+  description:
+    "How Saarthi Studio created a professional digital presence for Dr. Amol Bhere's Ayurvedic clinic — structured treatment pages, clear appointment booking, and SEO-focused architecture.",
   projectName: "Dr. Amol Bhere Ayurveda",
   projectId: "05",
   date: "2026",
@@ -214,6 +224,8 @@ Healthcare websites should educate before they sell. By combining a clean interf
 {
   slug: "iconic-beauty-salon",
   title: "Iconic Beauty Salon Case Study",
+  description:
+    "How Saarthi Studio built a mobile-first beauty salon website for Iconic Beauty Salon — service and pricing pages, a gallery, and WhatsApp-first appointment booking.",
   projectName: "Iconic Beauty Salon",
   projectId: "06",
   date: "2026",

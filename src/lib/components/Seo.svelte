@@ -1,12 +1,63 @@
 <script>
+	import {
+		SITE_NAME,
+		DEFAULT_TITLE,
+		DEFAULT_DESCRIPTION,
+		DEFAULT_OG_IMAGE,
+		DEFAULT_LOCALE,
+		absoluteUrl,
+		imageUrl,
+		organizationSchema,
+		websiteSchema,
+		breadcrumbSchema,
+		articleSchema,
+		jsonLd
+	} from "$lib/seo.js";
+
 	let {
-		title = "Saarthi Studio | Digital Partner for Modern Brands",
-		description = "Saarthi Studio is a digital partner for modern brands. We help brands grow through websites, design, and digital presence.",
-		url = "https://www.saarthistudio.com/",
-		image = "/og-image.png",
-		siteName = "Saarthi Studio",
-		type = "website"
+		title = DEFAULT_TITLE,
+		description = DEFAULT_DESCRIPTION,
+		url = "/",
+		image = DEFAULT_OG_IMAGE,
+		siteName = SITE_NAME,
+		type = "website",
+		robots = "index, follow",
+		keywords,
+		datePublished,
+		dateModified,
+		section,
+		breadcrumbItems = [],
+		schema = []
 	} = $props();
+
+	const canonicalUrl = $derived(absoluteUrl(url));
+	const ogImage = $derived(imageUrl(image));
+
+	const structuredDataHtml = $derived.by(() => {
+		const list = [organizationSchema(), websiteSchema()];
+		if (type === "article" && datePublished) {
+			list.push(
+				articleSchema({
+					headline: title,
+					description,
+					url,
+					image,
+					datePublished,
+					dateModified,
+					section,
+					keywords
+				})
+			);
+		}
+		list.push(...(schema ?? []));
+		if (breadcrumbItems.length) list.push(breadcrumbSchema(breadcrumbItems));
+		return list
+			.map(
+				(item) =>
+					`<script type="application/ld+json">${jsonLd(item)}<\/script>`
+			)
+			.join("\n");
+	});
 </script>
 
 <svelte:head>
@@ -14,46 +65,30 @@
 	<title>{title}</title>
 	<meta name="title" content={title} />
 	<meta name="description" content={description} />
-	<meta name="robots" content="index, follow" />
+	<meta name="robots" content={robots} />
 	<meta name="theme-color" content="#050505" />
-	<link rel="canonical" href={url} />
+	<link rel="canonical" href={canonicalUrl} />
 	<meta name="author" content={siteName} />
 	<meta name="application-name" content={siteName} />
+	{#if keywords}<meta name="keywords" content={keywords} />{/if}
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content={type} />
-	<meta property="og:url" content={url} />
+	<meta property="og:url" content={canonicalUrl} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:site_name" content={siteName} />
-	<meta property="og:image" content={image} />
+	<meta property="og:locale" content={DEFAULT_LOCALE} />
+	<meta property="og:image" content={ogImage} />
 	<meta property="og:image:alt" content={title} />
 
 	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={url} />
-	<meta property="twitter:title" content={title} />
-	<meta property="twitter:description" content={description} />
-	<meta property="twitter:image" content={image} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:url" content={canonicalUrl} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
 
-	<!-- SEO -->
-	<meta
-		name="keywords"
-		content="website design company, web development company, website design agency, web design agency, custom website development, responsive website design, ecommerce website development, website redesign, web application development, SEO-friendly websites, website development India, website design India, website developer Mumbai, website developer Kalyan, Saarthi Studio, Sarathi Studio"
-	/>
-
-	<script
-		type="application/ld+json"
-		data-sveltekit-reload
-	>
-		{JSON.stringify({
-			'@context': 'https://schema.org',
-			'@type': 'Organization',
-			name: siteName,
-			url,
-			logo: `${url}/logo.png`,
-			image: `${url}${image}`,
-			description
-		})}
-	</script>
+	<!-- Structured data -->
+	{@html structuredDataHtml}
 </svelte:head>

@@ -3,6 +3,7 @@
   import Minus from "@lucide/svelte/icons/minus";
   import { slide } from "svelte/transition";
   import posthog from "posthog-js";
+  import { jsonLd } from "$lib/seo.js";
 
   const faqs = [
   {
@@ -59,9 +60,7 @@
 
 
 <svelte:head>
-  <script type="application/ld+json">
-    {JSON.stringify(faqSchema)}
-  </script>
+  {@html `<script type="application/ld+json">${jsonLd(faqSchema)}<\/script>`}
 </svelte:head>
 
 <section
@@ -108,6 +107,7 @@
           class="w-full border-b border-white/10 py-8 text-left flex flex-col cursor-pointer group"
           onclick={() => toggle(index)}
           aria-expanded={activeIndex === index}
+          aria-label={item.q}
         >
           <div class="w-full flex justify-between items-center">
             <h3

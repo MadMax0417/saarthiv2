@@ -1,12 +1,21 @@
 <script>
+	import Seo from "$lib/components/Seo.svelte";
+
 	let { data } = $props();
-	const { caseStudy } = data;
+	const caseStudy = $derived(data.caseStudy);
 </script>
 
-<svelte:head>
-	<title>{caseStudy.title} - Case Study</title>
-	<meta name="description" content="Case study: {caseStudy.title} for {caseStudy.projectName}" />
-</svelte:head>
+<Seo
+	title={`${caseStudy.title} | Saarthi Studio`}
+	description={caseStudy.description ?? `Case study: ${caseStudy.title} for ${caseStudy.projectName}`}
+	url={`/case-studies/${caseStudy.slug}`}
+	type="article"
+	section="Case Study"
+	breadcrumbItems={[
+		{ name: "Home", path: "/" },
+		{ name: caseStudy.projectName, path: `/case-studies/${caseStudy.slug}` }
+	]}
+/>
 
 <section class="w-full bg-[#050505] text-white min-h-screen py-20">
 	<div class="max-w-4xl mx-auto px-6 md:px-12">

@@ -12,10 +12,6 @@
   type="article"
 />
 
-<svelte:head>
-  <meta name="robots" content="index, follow" />
-</svelte:head>
-
 <section class="bg-[#050505] text-white">
   <div class="mx-auto max-w-5xl px-6 md:px-24 py-24 md:py-32">
     <div class="max-w-3xl mb-16">

@@ -17,10 +17,6 @@
 	type="website"
 />
 
-<svelte:head>
-	<meta name="robots" content="index, follow" />
-</svelte:head>
-
 <section class="bg-[#050505] text-white relative overflow-hidden">
 	<div class="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_55%)] pointer-events-none"></div>
 	<div class="absolute right-[-10%] top-[12rem] h-[22rem] w-[22rem] rounded-full bg-white/5 blur-3xl pointer-events-none"></div>

@@ -84,7 +84,7 @@
         <p>
           Email:
           <a
-            href="mailto:saarthistudios@gmail.com"
+            href="mailto:hello@saarthistudio.com"
             class="text-white hover:text-[#3B82F6]"
           >
             {contactDetails.email}

@@ -2,12 +2,35 @@
 
 > Saarthi Studio is a creative web design and digital branding studio focused on premium landing pages, brand identity, conversion-focused websites, and thoughtful motion-driven experiences.
 
-Important notes:
+## Overview
 
+- Website: https://www.saarthistudio.com/
+- Built with SvelteKit, Tailwind CSS, and GSAP.
 - The homepage is the primary entry point and contains the core studio overview, services, showcases, testimonials, FAQ, stats, and contact CTA.
 - The site includes a blog for practical notes on branding, copy, design, and conversion, plus individual case studies for selected projects.
 - The contact form is handled server-side through SvelteKit actions.
 - The `thank-you` page should not be indexed.
+
+## Services
+
+- Website design and development
+- Web application development
+- Brand identity and logo design
+- Graphic design
+- SEO-friendly website architecture
+- Social media content
+
+## Service Area
+
+India — including Kalyan, Mumbai, and remote clients worldwide.
+
+## Contact
+
+- Email: hello@saarthistudio.com
+- Phone: +91 81693 14760
+- WhatsApp: +91 86389 27841
+- Instagram: https://www.instagram.com/studio_saarthi/
+- X: https://x.com/saarthi_studio
 
 ## Key Pages
 

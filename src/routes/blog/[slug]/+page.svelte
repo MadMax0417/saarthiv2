@@ -13,11 +13,16 @@
 	description={post.description}
 	url={post.url}
 	type="article"
+	section={post.category}
+	keywords={post.keywords}
+	datePublished={post.date}
+	dateModified={post.date}
+	breadcrumbItems={[
+		{ name: "Home", path: "/" },
+		{ name: "Blog", path: "/blog" },
+		{ name: post.title, path: `/blog/${post.slug}` }
+	]}
 />
-
-<svelte:head>
-	<meta name="robots" content="index, follow" />
-</svelte:head>
 
 <section class="bg-[#050505] text-white relative overflow-hidden">
 	<div class="absolute inset-x-0 top-0 h-[420px] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.16),_transparent_58%)] pointer-events-none"></div>
