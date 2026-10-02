@@ -11,7 +11,8 @@
 		websiteSchema,
 		breadcrumbSchema,
 		articleSchema,
-		jsonLd
+		jsonLd,
+		peopleSchema
 	} from "$lib/seo.js";
 
 	let {
@@ -34,7 +35,7 @@
 	const ogImage = $derived(imageUrl(image));
 
 	const structuredDataHtml = $derived.by(() => {
-		const list = [organizationSchema(), websiteSchema()];
+		const list = [organizationSchema(), websiteSchema(), ...peopleSchema()];
 		if (type === "article" && datePublished) {
 			list.push(
 				articleSchema({

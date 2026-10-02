@@ -11,11 +11,13 @@
 	import Seo from "$lib/components/Seo.svelte";
   import Cta from "$lib/components/Cta.svelte";
 	import { getAllPosts } from "$lib/content/blog.js";
+	import { reviewsSchema } from "$lib/seo.js";
 
 	const blogPosts = getAllPosts().slice(0, 3);
+	const reviewSchemas = reviewsSchema();
 </script>
 
-<Seo />
+<Seo schema={reviewSchemas} />
 
 <div class="bg-[#050505] text-white">
 	<Hero />
