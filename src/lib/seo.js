@@ -92,8 +92,8 @@ export const CONTACT = {
 	email: "hello@saarthistudio.com",
 	phone: "+918169314760",
 	phoneDisplay: "+91 81693 14760",
-	whatsapp: "+918638927841",
-	whatsappDisplay: "+91 86389 27841"
+	whatsapp: "+917057935459",
+	whatsappDisplay: "+91 70579 35459"
 };
 
 /** Resolve a relative path against the site URL. Absolute URLs pass through. */

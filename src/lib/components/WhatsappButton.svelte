@@ -3,7 +3,7 @@
   import { MessageCircle } from "@lucide/svelte";
   import posthog from "posthog-js";
 
-	let phoneNumber = "918638927841"; // Replace with actual WhatsApp number
+	let phoneNumber = "917057935459"; // Replace with actual WhatsApp number
 	const message = encodeURIComponent('Hello! I would like to talk about a project.');
 
 	const handleWhatsappClick = () => {
