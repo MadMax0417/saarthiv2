@@ -17,6 +17,7 @@
 
 	let {
 		title = DEFAULT_TITLE,
+		headline,
 		description = DEFAULT_DESCRIPTION,
 		url = "/",
 		image = DEFAULT_OG_IMAGE,
@@ -39,7 +40,7 @@
 		if (type === "article" && datePublished) {
 			list.push(
 				articleSchema({
-					headline: title,
+					headline: headline ?? title,
 					description,
 					url,
 					image,

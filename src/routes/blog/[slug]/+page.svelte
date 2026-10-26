@@ -2,21 +2,25 @@
 	import Footer from "$lib/components/Footer.svelte";
 	import Seo from "$lib/components/Seo.svelte";
 	import { formatPostDate } from "$lib/content/blog.js";
+	import { faqSchema } from "$lib/seo.js";
 
 	let { data } = $props();
 	const post = $derived(data.post);
 	const relatedPosts = $derived(data.relatedPosts);
+	const schema = $derived(post.faqs?.length ? [faqSchema(post.faqs)] : []);
 </script>
 
 <Seo
 	title={`${post.title} | Saarthi Studio`}
-	description={post.description}
+	headline={post.title}
+	description={post.metaDescription ?? post.description}
 	url={post.url}
 	type="article"
 	section={post.category}
 	keywords={post.keywords}
 	datePublished={post.date}
 	dateModified={post.date}
+	schema={schema}
 	breadcrumbItems={[
 		{ name: "Home", path: "/" },
 		{ name: "Blog", path: "/blog" },
@@ -36,6 +40,7 @@
 		<div class="border border-white/10 bg-white/[0.03] rounded-[2rem] p-6 md:p-10">
 			<div class="flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-[0.3em] text-white/40 mb-6">
 				<span>{post.category}</span>
+				{#if post.author}<span>By {post.author}</span>{/if}
 				<span>{formatPostDate(post.date)}</span>
 				<span>{post.readingTime}</span>
 			</div>
@@ -55,11 +60,32 @@
 				{:else if section.type === "heading"}
 					<h2>{section.text}</h2>
 				{:else if section.type === "list"}
-					<ul>
-						{#each section.items as item}
-							<li>{item}</li>
+					{#if section.ordered}
+						<ol>
+							{#each section.items as item}
+								<li>{item}</li>
+							{/each}
+						</ol>
+					{:else}
+						<ul>
+							{#each section.items as item}
+								<li>{item}</li>
+							{/each}
+						</ul>
+					{/if}
+				{:else if section.type === "links"}
+					<p>
+						{#each section.items as link, index}
+							{#if index > 0}<span aria-hidden="true"> · </span>{/if}
+							<a
+								href={link.href}
+								target={link.external ? "_blank" : undefined}
+								rel={link.external ? "noopener noreferrer" : undefined}
+								class="text-[#60a5fa] hover:underline"
+								class:whitespace-nowrap={link.nowrap}
+							>{link.text}</a>
 						{/each}
-					</ul>
+					</p>
 				{:else if section.type === "quote"}
 					<blockquote>
 
@@ -73,6 +99,13 @@
 					</p>
 				{/if}
 			{/each}
+			{#if post.faqs?.length}
+				<h2>FAQ</h2>
+				{#each post.faqs as faq}
+					<h3>{faq.q}</h3>
+					<p>{faq.a}</p>
+				{/each}
+			{/if}
 		</article>
 	</div>
 

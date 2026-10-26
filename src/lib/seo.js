@@ -236,6 +236,22 @@ export function breadcrumbSchema(items = []) {
 	};
 }
 
+/** FAQPage schema built from the same visible Q/A copy used on the page. */
+export function faqSchema(faqs = []) {
+	return {
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqs.map((faq) => ({
+			"@type": "Question",
+			name: faq.q,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: faq.a
+			}
+		}))
+	};
+}
+
 /** Default blog author — Person node matching the founder schema. */
 export const BLOG_AUTHOR = {
 	"@type": "Person",
